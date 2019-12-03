@@ -1,0 +1,117 @@
+<div class="component-content">
+  <div class="lefthalf">
+    <span class="component-title">{{ title }} </span>
+  </div>
+</div>
+
+<p *ngIf="!product">Loading...</p>
+
+<div *ngIf="product">
+  <main class="single">
+    <table class="table table-sm">
+      <tr>
+        <th>Vendor:</th>
+        <td>
+          <select
+            [(ngModel)]="product.vendor"
+            class="rounded"
+            style="width: 250px;"
+            [compareWith]="compVendor"
+            disabled
+          >
+            <option *ngFor="let v of vendors" [ngValue]="v">{{
+              v.name
+            }}</option>
+          </select>
+        </td>
+      </tr>
+      <tr>
+        <th>Part Number:</th>
+        <td>
+          <input
+            [(ngModel)]="product.partNumber"
+            type="text"
+            class="rounded"
+            maxlength="50"
+            disabled
+          />
+        </td>
+      </tr>
+      <tr>
+        <th>Name:</th>
+        <td>
+          <input
+            [(ngModel)]="product.name"
+            type="text"
+            class="rounded"
+            maxlength="150"
+            disabled
+          />
+        </td>
+      </tr>
+      <tr>
+        <th>Price:</th>
+        <td>
+          <input
+            [(ngModel)]="product.price"
+            type="number"
+            class="rounded"
+            max="9999999999.99"
+            step=".01"
+            disabled
+          />
+        </td>
+      </tr>
+      <tr>
+        <th>Unit:</th>
+        <td>
+          <input
+            [(ngModel)]="product.unit"
+            type="text"
+            class="rounded"
+            maxlength="255"
+            disabled
+          />
+        </td>
+      </tr>
+      <tr>
+        <th>Photo Path:</th>
+        <td>
+          <input
+            [(ngModel)]="product.photoPath"
+            type="text"
+            class="rounded"
+            maxlength="255"
+            disabled
+          />
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <span>
+            <span
+              ><button (click)="delete()" class="btn btn-sm btn-danger">
+                Delete
+              </button></span
+            >
+            <span>
+              |
+              <button
+                routerLink="/products/edit/{{ product.id }}"
+                class="btn btn-sm btn-primary"
+              >
+                Edit
+              </button></span
+            >
+            <span>
+              |
+              <button (click)="backClicked()" class="btn btn-sm btn-secondary">
+                Back
+              </button></span
+            >
+          </span>
+        </td>
+      </tr>
+    </table>
+  </main>
+</div>

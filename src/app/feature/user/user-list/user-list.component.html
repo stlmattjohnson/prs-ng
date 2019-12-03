@@ -1,0 +1,57 @@
+<div class="component-content">
+  <div class="lefthalf">
+    <span class="component-title">{{ title }} </span>
+    <span>
+      <a routerLink="/users/create">
+        <img
+          id="createnew"
+          width="20"
+          height="20"
+          src="assets/add-icon.png"
+          title="Add New"
+      /></a>
+    </span>
+  </div>
+</div>
+<table *ngIf="!isLoading" class="table table-sm table-striped">
+  <thead class="thead-dark">
+    <tr>
+      <th><a (click)="sortBy('id')">ID</a></th>
+      <th><a (click)="sortBy('userName')">Username</a></th>
+      <th><a (click)="sortBy('password')">Password</a></th>
+      <th><a (click)="sortBy('firstName')">First Name</a></th>
+      <th><a (click)="sortBy('lastName')">Last Name</a></th>
+      <th><a (click)="sortBy('phoneNumber')">Phone</a></th>
+      <th><a (click)="sortBy('email')">Email</a></th>
+      <th><a (click)="sortBy('reviewer')">Reviewer</a></th>
+      <th><a (click)="sortBy('admin')">Admin</a></th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let u of users | sort: sortCriteria:sortOrder">
+      <td>{{ u.id }}</td>
+      <td>{{ u.userName }}</td>
+      <td>{{ u.password }}</td>
+      <td>{{ u.firstName }}</td>
+      <td>{{ u.lastName }}</td>
+      <td>{{ u.phoneNumber }}</td>
+      <td>{{ u.email }}</td>
+      <td>{{ u.reviewer }}</td>
+      <td>{{ u.admin }}</td>
+      <td>
+        <a routerLink="/users/detail/{{ u.id }}"
+          ><img src="/assets/details.png" width="20" height="20"
+        /></a>
+        |
+        <a routerLink="/users/edit/{{ u.id }}"
+          ><img
+            src="/assets/pencil-icon.png"
+            width="20"
+            height="20"
+            title="Edit"
+        /></a>
+      </td>
+    </tr>
+  </tbody>
+</table>

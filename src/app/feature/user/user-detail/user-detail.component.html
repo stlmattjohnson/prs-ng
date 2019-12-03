@@ -1,0 +1,128 @@
+<div class="component-content">
+  <div class="lefthalf">
+    <span class="component-title">{{ title }} </span>
+  </div>
+</div>
+
+<p *ngIf="!user">Loading...</p>
+
+<div *ngIf="user">
+  <main class="single">
+    <table class="table table-sm">
+      <tr>
+        <th>First Name:</th>
+        <td>
+          <input
+            [(ngModel)]="user.firstName"
+            type="text"
+            class="rounded"
+            disabled
+          />
+        </td>
+      </tr>
+      <tr>
+        <th>Last Name:</th>
+        <td>
+          <input
+            [(ngModel)]="user.lastName"
+            type="text"
+            class="rounded"
+            disabled
+          />
+        </td>
+      </tr>
+      <tr>
+        <th>Username:</th>
+        <td>
+          <input
+            [(ngModel)]="user.userName"
+            type="text"
+            class="rounded"
+            disabled
+          />
+        </td>
+      </tr>
+      <tr>
+        <th>Password:</th>
+        <td>
+          <input
+            [(ngModel)]="user.password"
+            type="text"
+            class="rounded"
+            disabled
+          />
+        </td>
+      </tr>
+      <tr>
+        <th>Phone:</th>
+        <td>
+          <input
+            [(ngModel)]="user.phoneNumber"
+            type="text"
+            class="rounded"
+            disabled
+          />
+        </td>
+      </tr>
+      <tr>
+        <th>Email:</th>
+        <td>
+          <input
+            [(ngModel)]="user.email"
+            type="text"
+            class="rounded"
+            disabled
+          />
+        </td>
+      </tr>
+      <tr>
+        <th>Reviewer:</th>
+        <td>
+          <input
+            [(ngModel)]="user.reviewer"
+            type="checkbox"
+            class="rounded"
+            disabled
+          />
+        </td>
+      </tr>
+      <tr>
+        <th>Admin:</th>
+        <td>
+          <input
+            [(ngModel)]="user.admin"
+            type="checkbox"
+            class="rounded"
+            disabled
+          />
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <span>
+            <span
+              ><button (click)="delete()" class="btn btn-sm btn-danger">
+                Delete
+              </button></span
+            >
+            <span>
+              |
+              <button
+                routerLink="/users/edit/{{ user.id }}"
+                class="btn btn-sm btn-primary"
+              >
+                Edit
+              </button></span
+            >
+            <span>
+              |
+              <button (click)="backClicked()" class="btn btn-sm btn-secondary">
+                Back
+              </button></span
+            >
+          </span>
+        </td>
+      </tr>
+    </table>
+  </main>
+</div>
