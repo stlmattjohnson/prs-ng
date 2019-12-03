@@ -9,11 +9,12 @@
           height="20"
           src="assets/add-icon.png"
           title="Add New"
+          style="position: relative; top: -2px;"
       /></a>
     </span>
   </div>
 </div>
-<table *ngIf="!isLoading" class="table table-sm table-striped">
+<table *ngIf="!isLoading" class="table table-sm table-striped table-borderless table-hover">
   <thead class="thead-dark">
     <tr>
       <th><a (click)="sortBy('id')">ID</a></th>

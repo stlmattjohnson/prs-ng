@@ -19,9 +19,12 @@ import { ProductListComponent } from './feature/product/product-list/product-lis
 import { ProductCreateComponent } from './feature/product/product-create/product-create.component';
 import { ProductDetailComponent } from './feature/product/product-detail/product-detail.component';
 import { ProductEditComponent } from './feature/product/product-edit/product-edit.component';
+import { RequestListComponent } from './feature/request/request-list/request-list.component';
+import { FooterComponent } from './core/footer/footer.component';
+import { UserLoginComponent } from './feature/user/user-login/user-login.component';
 
 @NgModule({
-  declarations: [AppComponent, UserListComponent, MenuComponent, BaseComponent, SortPipe, UserCreateComponent, UserEditComponent, UserDetailComponent, VendorListComponent, VendorDetailComponent, VendorEditComponent, VendorCreateComponent, ProductListComponent, ProductCreateComponent, ProductDetailComponent, ProductEditComponent],
+  declarations: [AppComponent, UserListComponent, MenuComponent, BaseComponent, SortPipe, UserCreateComponent, UserEditComponent, UserDetailComponent, VendorListComponent, VendorDetailComponent, VendorEditComponent, VendorCreateComponent, ProductListComponent, ProductCreateComponent, ProductDetailComponent, ProductEditComponent, RequestListComponent, FooterComponent, UserLoginComponent],
   imports: [BrowserModule, HttpClientModule, FormsModule, AppRoutingModule],
   providers: [],
   bootstrap: [AppComponent]

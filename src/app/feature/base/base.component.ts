@@ -1,4 +1,6 @@
 import { Component, OnInit } from "@angular/core";
+import { SystemService } from "src/app/service/system.service";
+import { User } from "src/app/model/user.class";
 
 @Component({
   template: ""
@@ -6,11 +8,19 @@ import { Component, OnInit } from "@angular/core";
 export class BaseComponent implements OnInit {
   sortCriteria: string = "id";
   sortOrder: string = "asc";
+  loggedInUser: User = null;
+  isAdmin: boolean;
+  isReviewer: boolean;
 
-  constructor() {}
+  constructor(protected systemSvc: SystemService) {}
 
   ngOnInit() {
+    this.systemSvc.checkLogin();
+    this.loggedInUser = this.systemSvc.loggedInUser;
+    this.isAdmin = this.systemSvc.isAdmin();
+    this.isReviewer = this.systemSvc.isReviewer();
   }
+
   sortBy(column: string): void {
     if (column == this.sortCriteria) {
       this.sortOrder = this.sortOrder == "desc" ? "asc" : "desc";

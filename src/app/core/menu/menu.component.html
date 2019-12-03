@@ -1,7 +1,28 @@
 <nav>
-  <ul>
-    <li *ngFor="let m of menuItems" title="{{ m.tooltip }}">
-      <a routerLink="{{ m.href }}">{{ m.display }}</a>
-    </li>
-  </ul>
+  <table width="100%">
+    <tr>
+      <td style="padding-bottom: 11px; width: 120px">
+        <img
+          src="/assets/max.png"
+          width="113px"
+          height="20px"
+          style="float: left;"
+        />
+      </td>
+      <td>
+        <ul style="text-align: left; font-weight:700;">
+          <li *ngFor="let m of menuItems" title="{{ m.tooltip }}">
+            <a routerLink="{{ m.href }}">{{ m.display }}</a>
+          </li>
+        </ul>
+      </td>
+      <td>
+        <ul style="text-align: right; font-weight:700; padding-right: 5px; color: rgb(236, 28, 36);">
+          <li>
+            Purchase Request System
+          </li>
+        </ul>
+      </td>
+    </tr>
+  </table>
 </nav>

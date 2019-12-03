@@ -18,6 +18,7 @@ export class ProductDetailComponent implements OnInit {
   jr: JsonResponse;
   id: number = 0;
   vendors: Vendor[] = [];
+  isDeletePressed: boolean = false;
 
   constructor(
     private productSvc: ProductService,
@@ -48,6 +49,14 @@ export class ProductDetailComponent implements OnInit {
 
   compVendor(a: Vendor, b: Vendor): boolean {
     return a && b && a.id === b.id;
+  }
+
+  deletePressed(): void {
+    if (!this.isDeletePressed) {
+      this.isDeletePressed = true;
+    } else {
+      this.isDeletePressed = false;
+    }
   }
 
   backClicked() {

@@ -3,6 +3,7 @@ import { Product } from "src/app/model/product.class";
 import { JsonResponse } from "src/app/model/json-response.class";
 import { ProductService } from "src/app/service/product.service";
 import { BaseComponent } from "../../base/base.component";
+import { SystemService } from 'src/app/service/system.service';
 
 @Component({
   selector: "app-product-list",
@@ -15,8 +16,8 @@ export class ProductListComponent extends BaseComponent implements OnInit {
   jr: JsonResponse;
   isLoading: boolean = true;
 
-  constructor(private productSvc: ProductService) {
-    super();
+  constructor(private productSvc: ProductService, protected systemSvc: SystemService) {
+    super(systemSvc);
   }
 
   ngOnInit() {

@@ -1,3 +1,27 @@
 body {
   margin-top: 30px;
 }
+.component-content {
+  background-color: rgb(169, 29, 49);
+  color: white;
+  font-weight: 700;
+  text-align: left;
+  padding-top: 5px;
+}
+.lefthalf {
+  background-color: #343a40;
+  width: fit-content;
+  border-top-right-radius: 10px;
+  padding: 2px 5px;
+}
+.seperator {
+  background-color: #343a40;
+  height: 6px;
+}
+#footer {
+  clear: both;
+  position: relative;
+}
+#footer-content {
+  color:white
+}

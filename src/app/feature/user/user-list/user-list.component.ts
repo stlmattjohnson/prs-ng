@@ -3,6 +3,7 @@ import { User } from "src/app/model/user.class";
 import { JsonResponse } from "src/app/model/json-response.class";
 import { UserService } from "src/app/service/user.service";
 import { BaseComponent } from "../../base/base.component";
+import { SystemService } from 'src/app/service/system.service';
 
 @Component({
   selector: "app-user-list",
@@ -15,8 +16,8 @@ export class UserListComponent extends BaseComponent implements OnInit {
   jr: JsonResponse;
   isLoading: boolean = true;
   
-  constructor(private userSvc: UserService) {
-    super();
+  constructor(private userSvc: UserService, protected systemSvc: SystemService) {
+    super(systemSvc);
   }
 
   ngOnInit() {

@@ -15,6 +15,7 @@ export class UserDetailComponent implements OnInit {
   user: User = new User();
   jr: JsonResponse;
   id: number = 0;
+  isDeletePressed: boolean = false;
 
   constructor(
     private userSvc: UserService,
@@ -37,6 +38,14 @@ export class UserDetailComponent implements OnInit {
       }
       this.router.navigateByUrl("/users/list");
     });
+  }
+
+  deletePressed(): void {
+    if (!this.isDeletePressed) {
+      this.isDeletePressed = true;
+    } else {
+      this.isDeletePressed = false;
+    }
   }
 
   backClicked() {

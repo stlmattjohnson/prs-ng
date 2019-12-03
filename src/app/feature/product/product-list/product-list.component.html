@@ -1,54 +1,61 @@
 <div class="component-content">
-    <div class="lefthalf">
-      <span class="component-title">{{ title }} </span>
-      <span>
-        <a routerLink="/products/create">
-          <img
-            id="createnew"
+  <div class="lefthalf">
+    <span class="component-title">{{ title }} </span>
+    <span>
+      <a routerLink="/products/create">
+        <img
+          id="createnew"
+          width="20"
+          height="20"
+          src="assets/add-icon.png"
+          title="Add New"
+          style="position: relative; top: -2px;"
+      /></a>
+    </span>
+  </div>
+</div>
+<table *ngIf="!isLoading" class="table table-sm table-striped table-borderless table-hover">
+  <thead class="thead-dark">
+    <tr>
+      <th><a (click)="sortBy('id')">ID</a></th>
+      <th><a (click)="sortBy('vendor')">Vendor</a></th>
+      <th><a (click)="sortBy('partNumber')">Part Number</a></th>
+      <th><a (click)="sortBy('name')">Name</a></th>
+      <th><a (click)="sortBy('price')">Price</a></th>
+      <th><a (click)="sortBy('unit')">Unit</a></th>
+      <th>Photo</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let p of products | sort: sortCriteria:sortOrder">
+      <td>{{ p.id }}</td>
+      <td>{{ p.vendor.name }}</td>
+      <td>{{ p.partNumber }}</td>
+      <td>{{ p.name }}</td>
+      <td><a href="https://shopping.google.com/search?q={{p.name}}" target="blank" style="text-decoration: none;">[$]</a>{{ p.price }}</td>
+      <td>{{ p.unit }}</td>
+      <td>
+        <img
+          src="{{ p.photoPath }}"
+          height="40px"
+          width="40px"
+          style="border-radius: 10px;"
+        />
+      </td>
+      <td>
+        <a routerLink="/products/detail/{{ p.id }}"
+          ><img src="/assets/details.png" width="20" height="20"
+        /></a>
+        |
+        <a routerLink="/products/edit/{{ p.id }}"
+          ><img
+            src="/assets/pencil-icon.png"
             width="20"
             height="20"
-            src="assets/add-icon.png"
-            title="Add New"
+            title="Edit"
         /></a>
-      </span>
-    </div>
-  </div>
-  <table *ngIf="!isLoading" class="table table-sm table-striped">
-    <thead class="thead-dark">
-      <tr>
-        <th><a (click)="sortBy('id')">ID</a></th>
-        <th><a (click)="sortBy('vendor')">Vendor</a></th>
-        <th><a (click)="sortBy('partNumber')">Part Number</a></th>
-        <th><a (click)="sortBy('name')">Name</a></th>
-        <th><a (click)="sortBy('price')">Price</a></th>
-        <th><a (click)="sortBy('unit')">Unit</a></th>
-        <th>Photo</th>
-        <th>Action</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let p of products | sort: sortCriteria:sortOrder">
-        <td>{{ p.id }}</td>
-        <td>{{ p.vendor.name }}</td>
-        <td>{{ p.partNumber }}</td>
-        <td>{{ p.name }}</td>
-        <td>{{ p.price }}</td>
-        <td>{{ p.unit }}</td>
-        <td><img src="{{ p.photoPath }}" height="40px" width="40px" style="border-radius: 10px;"></td>
-        <td>
-          <a routerLink="/products/detail/{{ p.id }}"
-            ><img src="/assets/details.png" width="20" height="20"
-          /></a>
-          |
-          <a routerLink="/products/edit/{{ p.id }}"
-            ><img
-              src="/assets/pencil-icon.png"
-              width="20"
-              height="20"
-              title="Edit"
-          /></a>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-  
+      </td>
+    </tr>
+  </tbody>
+</table>

@@ -1,58 +1,58 @@
 <div class="component-content">
-    <div class="lefthalf">
-      <span class="component-title">{{ title }} </span>
-      <span>
-        <a routerLink="/vendors/create">
-          <img
-            id="createnew"
+  <div class="lefthalf">
+    <span class="component-title">{{ title }} </span>
+    <span>
+      <a routerLink="/vendors/create">
+        <img
+          id="createnew"
+          width="20"
+          height="20"
+          src="assets/add-icon.png"
+          title="Add New"
+          style="position: relative; top: -2px;"
+      /></a>
+    </span>
+  </div>
+</div>
+<table *ngIf="!isLoading" class="table table-sm table-striped table-borderless table-hover">
+  <thead class="thead-dark">
+    <tr>
+      <th><a (click)="sortBy('id')">ID</a></th>
+      <th><a (click)="sortBy('code')">Code</a></th>
+      <th><a (click)="sortBy('name')">Name</a></th>
+      <th><a (click)="sortBy('address')">Address</a></th>
+      <th><a (click)="sortBy('city')">City</a></th>
+      <th><a (click)="sortBy('state')">State</a></th>
+      <th><a (click)="sortBy('zip')">Zip</a></th>
+      <th><a (click)="sortBy('phoneNumber')">Phone</a></th>
+      <th><a (click)="sortBy('email')">Email</a></th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let v of vendors | sort: sortCriteria:sortOrder">
+      <td>{{ v.id }}</td>
+      <td>{{ v.code }}</td>
+      <td>{{ v.name }}</td>
+      <td>{{ v.address }}</td>
+      <td>{{ v.city }}</td>
+      <td>{{ v.state }}</td>
+      <td>{{ v.zip }}</td>
+      <td>{{ v.phoneNumber }}</td>
+      <td>{{ v.email }}</td>
+      <td>
+        <a routerLink="/vendors/detail/{{ v.id }}"
+          ><img src="/assets/details.png" width="20" height="20"
+        /></a>
+        |
+        <a routerLink="/vendors/edit/{{ v.id }}"
+          ><img
+            src="/assets/pencil-icon.png"
             width="20"
             height="20"
-            src="assets/add-icon.png"
-            title="Add New"
+            title="Edit"
         /></a>
-      </span>
-    </div>
-  </div>
-  <table *ngIf="!isLoading" class="table table-sm table-striped">
-    <thead class="thead-dark">
-      <tr>
-        <th><a (click)="sortBy('id')">ID</a></th>
-        <th><a (click)="sortBy('code')">Code</a></th>
-        <th><a (click)="sortBy('name')">Name</a></th>
-        <th><a (click)="sortBy('address')">Address</a></th>
-        <th><a (click)="sortBy('city')">City</a></th>
-        <th><a (click)="sortBy('state')">State</a></th>
-        <th><a (click)="sortBy('zip')">Zip</a></th>
-        <th><a (click)="sortBy('phoneNumber')">Phone</a></th>
-        <th><a (click)="sortBy('email')">Email</a></th>
-        <th>Action</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let v of vendors | sort: sortCriteria:sortOrder">
-        <td>{{ v.id }}</td>
-        <td>{{ v.code }}</td>
-        <td>{{ v.name }}</td>
-        <td>{{ v.address }}</td>
-        <td>{{ v.city }}</td>
-        <td>{{ v.state }}</td>
-        <td>{{ v.zip }}</td>
-        <td>{{ v.phoneNumber }}</td>
-        <td>{{ v.email }}</td>
-        <td>
-          <a routerLink="/vendors/detail/{{ v.id }}"
-            ><img src="/assets/details.png" width="20" height="20"
-          /></a>
-          |
-          <a routerLink="/vendors/edit/{{ v.id }}"
-            ><img
-              src="/assets/pencil-icon.png"
-              width="20"
-              height="20"
-              title="Edit"
-          /></a>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-  
+      </td>
+    </tr>
+  </tbody>
+</table>

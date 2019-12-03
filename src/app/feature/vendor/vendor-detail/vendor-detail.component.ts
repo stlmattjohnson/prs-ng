@@ -15,6 +15,7 @@ export class VendorDetailComponent implements OnInit {
   vendor: Vendor = new Vendor();
   jr: JsonResponse;
   id: number = 0;
+  isDeletePressed: boolean = false;
 
   constructor(
     private vendorSvc: VendorService,
@@ -37,6 +38,14 @@ export class VendorDetailComponent implements OnInit {
       }
       this.router.navigateByUrl("/vendors/list");
     });
+  }
+
+  deletePressed(): void {
+    if (!this.isDeletePressed) {
+      this.isDeletePressed = true;
+    } else {
+      this.isDeletePressed = false;
+    }
   }
 
   backClicked() {

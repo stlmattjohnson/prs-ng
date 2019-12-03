@@ -7,101 +7,62 @@
 <p *ngIf="!user">Loading...</p>
 
 <div *ngIf="user">
+  <div class="seperator"></div>
   <main class="single">
-    <table class="table table-sm">
+    <table class="table table-sm" style="table-layout: fixed;">
       <tr>
-        <th>First Name:</th>
+        <th style="width: 15%;">First Name:</th>
         <td>
-          <input
-            [(ngModel)]="user.firstName"
-            type="text"
-            class="rounded"
-            disabled
-          />
+          <input [(ngModel)]="user.firstName" type="text" disabled />
         </td>
       </tr>
       <tr>
         <th>Last Name:</th>
         <td>
-          <input
-            [(ngModel)]="user.lastName"
-            type="text"
-            class="rounded"
-            disabled
-          />
+          <input [(ngModel)]="user.lastName" type="text" disabled />
         </td>
       </tr>
       <tr>
         <th>Username:</th>
         <td>
-          <input
-            [(ngModel)]="user.userName"
-            type="text"
-            class="rounded"
-            disabled
-          />
+          <input [(ngModel)]="user.userName" type="text" disabled />
         </td>
       </tr>
       <tr>
         <th>Password:</th>
         <td>
-          <input
-            [(ngModel)]="user.password"
-            type="text"
-            class="rounded"
-            disabled
-          />
+          <input [(ngModel)]="user.password" type="text" disabled />
         </td>
       </tr>
       <tr>
         <th>Phone:</th>
         <td>
-          <input
-            [(ngModel)]="user.phoneNumber"
-            type="text"
-            class="rounded"
-            disabled
-          />
+          <input [(ngModel)]="user.phoneNumber" type="text" disabled />
         </td>
       </tr>
       <tr>
         <th>Email:</th>
         <td>
-          <input
-            [(ngModel)]="user.email"
-            type="text"
-            class="rounded"
-            disabled
-          />
+          <input [(ngModel)]="user.email" type="text" disabled />
         </td>
       </tr>
       <tr>
         <th>Reviewer:</th>
         <td>
-          <input
-            [(ngModel)]="user.reviewer"
-            type="checkbox"
-            class="rounded"
-            disabled
-          />
+          <input [(ngModel)]="user.reviewer" type="checkbox" disabled />
         </td>
       </tr>
       <tr>
         <th>Admin:</th>
         <td>
-          <input
-            [(ngModel)]="user.admin"
-            type="checkbox"
-            class="rounded"
-            disabled
-          />
+          <input [(ngModel)]="user.admin" type="checkbox" disabled />
         </td>
       </tr>
-      <tr>
+      <tr *ngIf="!isDeletePressed">
         <td>
           <span>
             <span
-              ><button (click)="delete()" class="btn btn-sm btn-danger">
+              ><button (click)="deletePressed()" class="btn btn-sm btn-danger">
                 Delete
               </button></span
             >
@@ -121,6 +82,26 @@
               </button></span
             >
           </span>
+        </td>
+      </tr>
+      <tr *ngIf="isDeletePressed">
+        <td colspan="2" style="color: rgb(169, 29, 49); font-weight: bold;">
+          Are you sure you want to delete user {{ user.userName }}?
+        </td>
+      </tr>
+      <tr *ngIf="isDeletePressed">
+        <td>
+          <span
+            ><button (click)="delete()" class="btn btn-sm btn-danger">
+              Confirm
+            </button></span
+          >
+          <span>
+            |
+            <button (click)="deletePressed()" class="btn btn-sm btn-primary">
+              Cancel
+            </button></span
+          >
         </td>
       </tr>
     </table>

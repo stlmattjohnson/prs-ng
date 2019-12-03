@@ -3,6 +3,7 @@ import { Vendor } from "src/app/model/vendor.class";
 import { JsonResponse } from "src/app/model/json-response.class";
 import { VendorService } from "src/app/service/vendor.service";
 import { BaseComponent } from "../../base/base.component";
+import { SystemService } from 'src/app/service/system.service';
 
 @Component({
   selector: "app-vendor-list",
@@ -14,8 +15,9 @@ export class VendorListComponent extends BaseComponent implements OnInit {
   vendors: Vendor[] = [];
   jr: JsonResponse;
   isLoading: boolean = true;
-  constructor(private vendorSvc: VendorService) {
-    super();
+
+  constructor(private vendorSvc: VendorService, protected systemSvc: SystemService) {
+    super(systemSvc);
   }
 
   ngOnInit() {

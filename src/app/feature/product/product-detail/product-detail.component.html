@@ -1,4 +1,4 @@
-<div class="component-content">
+<div class="component-content" *ngIf="product">
   <div class="lefthalf">
     <span class="component-title">{{ title }} </span>
   </div>
@@ -7,14 +7,14 @@
 <p *ngIf="!product">Loading...</p>
 
 <div *ngIf="product">
+  <div class="seperator"></div>
   <main class="single">
-    <table class="table table-sm">
+    <table class="table table-sm" style="table-layout: fixed;">
       <tr>
-        <th>Vendor:</th>
+        <th style="width: 15%;">Vendor:</th>
         <td>
           <select
             [(ngModel)]="product.vendor"
-            class="rounded"
             style="width: 250px;"
             [compareWith]="compVendor"
             disabled
@@ -31,7 +31,6 @@
           <input
             [(ngModel)]="product.partNumber"
             type="text"
-            class="rounded"
             maxlength="50"
             disabled
           />
@@ -43,7 +42,6 @@
           <input
             [(ngModel)]="product.name"
             type="text"
-            class="rounded"
             maxlength="150"
             disabled
           />
@@ -55,7 +53,6 @@
           <input
             [(ngModel)]="product.price"
             type="number"
-            class="rounded"
             max="9999999999.99"
             step=".01"
             disabled
@@ -68,7 +65,6 @@
           <input
             [(ngModel)]="product.unit"
             type="text"
-            class="rounded"
             maxlength="255"
             disabled
           />
@@ -80,17 +76,16 @@
           <input
             [(ngModel)]="product.photoPath"
             type="text"
-            class="rounded"
             maxlength="255"
             disabled
           />
         </td>
       </tr>
-      <tr>
-        <td>
+      <tr *ngIf="!isDeletePressed">
+        <td colspan="2">
           <span>
             <span
-              ><button (click)="delete()" class="btn btn-sm btn-danger">
+              ><button (click)="deletePressed()" class="btn btn-sm btn-danger">
                 Delete
               </button></span
             >
@@ -110,6 +105,26 @@
               </button></span
             >
           </span>
+        </td>
+      </tr>
+      <tr *ngIf="isDeletePressed">
+        <td colspan="2" style="color: rgb(169, 29, 49); font-weight: bold;">
+          Are you sure you want to delete product {{ product.name }}?
+        </td>
+      </tr>
+      <tr *ngIf="isDeletePressed">
+        <td colspan="2">
+          <span
+            ><button (click)="delete()" class="btn btn-sm btn-danger">
+              Confirm
+            </button></span
+          >
+          <span>
+            |
+            <button (click)="deletePressed()" class="btn btn-sm btn-primary">
+              Cancel
+            </button></span
+          >
         </td>
       </tr>
     </table>
