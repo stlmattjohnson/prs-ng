@@ -4,17 +4,27 @@
     <span>
       <a routerLink="/products/create">
         <img
-          id="createnew"
+          class="default"
+          src="assets/add-icon.png"
           width="20"
           height="20"
-          src="assets/add-icon.png"
+          title="Add New"
+          style="position: relative; top: -2px;"/>
+        <img
+          class="hover"
+          src="assets/add-icon-hover.png"
+          width="20"
+          height="20"
           title="Add New"
           style="position: relative; top: -2px;"
       /></a>
     </span>
   </div>
 </div>
-<table *ngIf="!isLoading" class="table table-sm table-striped table-borderless table-hover">
+<table
+  *ngIf="!isLoading"
+  class="table table-sm table-striped table-borderless table-hover"
+>
   <thead class="thead-dark">
     <tr>
       <th><a (click)="sortBy('id')">ID</a></th>
@@ -33,7 +43,14 @@
       <td>{{ p.vendor.name }}</td>
       <td>{{ p.partNumber }}</td>
       <td>{{ p.name }}</td>
-      <td><a href="https://shopping.google.com/search?q={{p.name}}" target="blank" style="text-decoration: none;">[$]</a>{{ p.price }}</td>
+      <td>
+        <a
+          href="https://shopping.google.com/search?q={{ p.name }}"
+          target="blank"
+          style="text-decoration: none;"
+          >[$]</a
+        >{{ p.price }}
+      </td>
       <td>{{ p.unit }}</td>
       <td>
         <img
@@ -45,15 +62,29 @@
       </td>
       <td>
         <a routerLink="/products/detail/{{ p.id }}"
-          ><img src="/assets/details.png" width="20" height="20"
+          ><img
+            class="default"
+            src="assets/details.png"
+            width="20"
+            height="20"/>
+          <img
+            class="hover"
+            src="assets/details-hover.png"
+            width="20"
+            height="20"
         /></a>
         |
         <a routerLink="/products/edit/{{ p.id }}"
           ><img
-            src="/assets/pencil-icon.png"
+            class="default"
+            src="assets/pencil-icon.png"
+            width="20"
+            height="20"/>
+          <img
+            class="hover"
+            src="assets/pencil-icon-hover.png"
             width="20"
             height="20"
-            title="Edit"
         /></a>
       </td>
     </tr>

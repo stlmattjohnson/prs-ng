@@ -1,27 +1,39 @@
-body {
-  margin-top: 30px;
+a img.hover {
+  display: none;
+}
+a img.default {
+  display: inherit;
+}
+a:hover img.hover {
+  display: inherit;
+}
+a:hover img.default {
+  display: none;
 }
 .component-content {
   background-color: rgb(169, 29, 49);
   color: white;
   font-weight: 700;
   text-align: left;
-  padding-top: 5px;
+  padding-top: 10px;
 }
 .lefthalf {
-  background-color: #343a40;
-  width: fit-content;
-  border-top-right-radius: 10px;
+  background: linear-gradient(to right, #343a40 20%, rgb(169, 29, 49) 50%);
   padding: 2px 5px;
 }
 .seperator {
   background-color: #343a40;
   height: 6px;
 }
-#footer {
-  clear: both;
+.main-container {
+  min-height: 100vh;
+  overflow: hidden;
+  display: block;
   position: relative;
-}
-#footer-content {
-  color:white
+  padding-bottom: 30px;
+ }
+footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
 }
