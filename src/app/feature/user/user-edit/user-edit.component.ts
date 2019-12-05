@@ -15,6 +15,7 @@ export class UserEditComponent implements OnInit {
   user: User = new User();
   jr: JsonResponse;
   id: number = 0;
+  
   constructor(
     private userSvc: UserService,
     private router: Router,
@@ -29,8 +30,8 @@ export class UserEditComponent implements OnInit {
     });
   }
 
-  save(): void {
-    this.userSvc.save(this.user).subscribe(jr => {
+  update(): void {
+    this.userSvc.update(this.user).subscribe(jr => {
       this.router.navigateByUrl("/users/list");
     });
   }

@@ -13,8 +13,12 @@
   width: 400px;
 }
 .fields {
+  padding-top: 10px;
   font-size: large;
   align-content: center;
+}
+.fields td{
+  padding: 0px;
 }
 input {
   border-color: rgb(169, 29, 49);

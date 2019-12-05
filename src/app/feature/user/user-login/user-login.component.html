@@ -1,22 +1,33 @@
 <div class="body">
   <div class="login" style="font-size: xx-large;">
-    <img src="/assets/max.png" style="width: 400px; height:70px" /><br />
-    Purchase Request System<br /><br />
+    <span><img src="/assets/max.png" style="width: 400px; height:70px"/></span>
+    <span>Purchase Request System</span>
     <div class="fields">
-      <table width="100%">
+      <table width="100%" *ngIf="user">
         <tr>
           <td>Username:</td>
-          <td><input type="text" /></td>
+          <td><input [(ngModel)]="user.userName" type="text" /></td>
         </tr>
         <tr>
           <td>Password:</td>
-          <td><input type="text" /></td>
+          <td><input [(ngModel)]="user.password" type="password" /></td>
         </tr>
         <tr>
-            <td colspan="2">
-                <br>
-                <button class="btn btn-sm btn-danger">Login</button>
-            </td>
+          <td colspan="2">
+            <br />
+            <button
+              type="submit"
+              (click)="login()"
+              class="btn btn-sm btn-danger"
+            >
+              Login
+            </button>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2">
+            <span style="font-size: small;">{{ message }}</span>
+          </td>
         </tr>
       </table>
     </div>

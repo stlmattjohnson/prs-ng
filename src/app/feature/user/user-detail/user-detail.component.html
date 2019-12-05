@@ -9,7 +9,7 @@
 <div *ngIf="user">
   <div class="seperator"></div>
   <main class="single">
-    <table class="table table-sm" style="table-layout: fixed;">
+    <table class="table table-sm table-borderless" style="table-layout: fixed;">
       <tr>
         <th style="width: 15%;">First Name:</th>
         <td>
@@ -59,7 +59,7 @@
         </td>
       </tr>
       <tr *ngIf="!isDeletePressed">
-        <td>
+        <td colspan="2">
           <span>
             <span
               ><button (click)="deletePressed()" class="btn btn-sm btn-danger">
@@ -87,10 +87,7 @@
       <tr *ngIf="isDeletePressed">
         <td colspan="2" style="color: rgb(169, 29, 49); font-weight: bold;">
           Are you sure you want to delete user {{ user.userName }}?
-        </td>
-      </tr>
-      <tr *ngIf="isDeletePressed">
-        <td>
+          <br />
           <span
             ><button (click)="delete()" class="btn btn-sm btn-danger">
               Confirm

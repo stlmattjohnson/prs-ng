@@ -1,0 +1,69 @@
+<div class="component-content">
+  <div class="lefthalf">
+    <span class="component-title">{{ title }}</span>
+  </div>
+</div>
+
+<p *ngIf="!request">Loading...</p>
+
+<div *ngIf="request">
+  <div class="seperator"></div>
+  <main class="single">
+    <table class="table table-sm table-borderless" style="table-layout: fixed;">
+      <tr>
+        <th style="width: 15%;">Description:</th>
+        <td>
+          <textarea
+            [(ngModel)]="request.description"
+            cols="25"
+            rows="2"
+            maxlength="100"
+          ></textarea>
+        </td>
+      </tr>
+      <tr>
+        <th>Justification:</th>
+        <td>
+          <textarea
+            [(ngModel)]="request.justification"
+            cols="25"
+            rows="2"
+            maxlength="255"
+          ></textarea>
+        </td>
+      </tr>
+      <tr>
+        <th>Delivery Mode:</th>
+        <td>
+          <form>
+            <input
+              type="radio"
+              name="shipping"
+              [(ngModel)]="request.deliveryMode"
+              value="Pick Up"
+            /> Pick Up  
+            <input
+              type="radio"
+              name="shipping"
+              [(ngModel)]="request.deliveryMode"
+              value="Mail"
+            /> Mail
+          </form>
+        </td>
+      </tr>
+      <tr>
+        <th>Date Needed:</th>
+        <td>
+          <input [(ngModel)]="request.dateNeeded" type="date" />
+        </td>
+      </tr>
+      <tr>
+        <td colspan="2">
+          <button (click)="save()" class="btn btn-sm btn-primary">
+            Save
+          </button>
+        </td>
+      </tr>
+    </table>
+  </main>
+</div>

@@ -9,7 +9,7 @@
 <div *ngIf="product">
   <div class="seperator"></div>
   <main class="single">
-    <table class="table table-sm" style="table-layout: fixed;">
+    <table class="table table-sm table-borderless" style="table-layout: fixed;">
       <tr>
         <th style="width: 15%;">Vendor:</th>
         <td>
@@ -63,8 +63,8 @@
         <td>
           <span>
             <span
-              ><button (click)="save()" class="btn btn-sm btn-primary">
-                Save
+              ><button (click)="update()" class="btn btn-sm btn-primary">
+                Update
               </button></span
             >
             <span>

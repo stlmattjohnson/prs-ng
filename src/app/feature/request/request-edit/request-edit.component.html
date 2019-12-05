@@ -1,0 +1,122 @@
+<div class="component-content">
+  <div class="lefthalf">
+    <span class="component-title">{{ title }}</span>
+  </div>
+</div>
+
+<p *ngIf="!request">Loading...</p>
+
+<div *ngIf="request">
+  <div class="seperator"></div>
+  <main class="single">
+    <table class="table table-sm table-borderless" style="table-layout: fixed;">
+      <tr>
+        <th style="width: 15%;">User:</th>
+        <td>
+          <select
+            [(ngModel)]="request.user"
+            style="width: 200px;"
+            [compareWith]="compUser"
+          >
+            <option *ngFor="let u of users" [ngValue]="u"
+              >{{ u.firstName }} {{ u.lastName }}</option
+            >
+          </select>
+        </td>
+      </tr>
+      <tr>
+        <th>Description:</th>
+        <td>
+          <input
+            [(ngModel)]="request.description"
+            type="text"
+            maxlength="100"
+          />
+        </td>
+      </tr>
+      <tr>
+        <th>Justification:</th>
+        <td>
+          <input
+            [(ngModel)]="request.justification"
+            type="text"
+            maxlength="255"
+          />
+        </td>
+      </tr>
+      <tr>
+        <th>Delivery Mode:</th>
+        <td>
+          <form>
+            <input
+              type="radio"
+              name="shipping"
+              [(ngModel)]="request.deliveryMode"
+              value="Pick Up"
+            />
+            Pick Up
+            <input
+              type="radio"
+              name="shipping"
+              [(ngModel)]="request.deliveryMode"
+              value="Mail"
+            />
+            Mail
+          </form>
+        </td>
+      </tr>
+      <tr>
+        <th>Date Needed:</th>
+        <td>
+          <input [(ngModel)]="request.dateNeeded" type="date" />
+        </td>
+      </tr>
+      <tr>
+        <th>Date Submitted:</th>
+        <td>
+          <input [(ngModel)]="request.submittedDate" type="text" disabled />
+        </td>
+      </tr>
+      <tr>
+        <th>Total:</th>
+        <td>
+          <input [(ngModel)]="request.total" type="text" disabled />
+        </td>
+      </tr>
+      <tr>
+        <th>Status:</th>
+        <td>
+          <input [(ngModel)]="request.status" type="text" disabled />
+        </td>
+      </tr>
+      <tr *ngIf="request.status == 'Rejected'">
+        <th>Reason for Rejection:</th>
+        <td>
+          <textarea
+            [(ngModel)]="request.reasonForRejection"
+            cols="25"
+            rows="3"
+            disabled
+          ></textarea>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="2">
+          <span>
+            <span
+              ><button (click)="update()" class="btn btn-sm btn-primary">
+                Update
+              </button></span
+            >
+            <span>
+              |
+              <button (click)="backClicked()" class="btn btn-sm btn-secondary">
+                Back
+              </button></span
+            >
+          </span>
+        </td>
+      </tr>
+    </table>
+  </main>
+</div>

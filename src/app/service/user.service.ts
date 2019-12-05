@@ -11,6 +11,10 @@ export class UserService {
   url: string = "http://localhost:8080/users/";
   constructor(private http: HttpClient) {}
 
+  login(user: User): Observable<JsonResponse> {
+    return this.http.post(this.url + "login/", user) as Observable<JsonResponse>;
+  }
+
   list(): Observable<JsonResponse> {
     return this.http.get(this.url) as Observable<JsonResponse>;
   }
@@ -21,6 +25,10 @@ export class UserService {
 
   save(user: User): Observable<JsonResponse> {
     return this.http.post(this.url, user) as Observable<JsonResponse>;
+  }
+
+  update(user: User): Observable<JsonResponse> {
+    return this.http.put(this.url, user) as Observable<JsonResponse>;
   }
 
   delete(id: number): Observable<JsonResponse> {

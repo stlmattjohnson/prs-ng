@@ -6,8 +6,8 @@ export class User {
   lastName: string;
   phoneNumber: string;
   email: string;
-  isReviewer: boolean;
-  isAdmin: boolean;
+  reviewer: boolean;
+  admin: boolean;
 
   constructor(
     id: number = 0,
@@ -17,8 +17,8 @@ export class User {
     lastName: string = "",
     phoneNumber: string = "",
     email: string = "",
-    isReviewer: boolean = false,
-    isAdmin: boolean = false
+    reviewer: boolean = false,
+    admin: boolean = false
   ) {
     this.id = id;
     this.userName = userName;
@@ -27,7 +27,7 @@ export class User {
     this.lastName = lastName;
     this.phoneNumber = phoneNumber;
     this.email = email;
-    this.isReviewer = isReviewer;
-    this.isAdmin = isAdmin;
+    this.reviewer = reviewer;
+    this.admin = admin;
   }
 }

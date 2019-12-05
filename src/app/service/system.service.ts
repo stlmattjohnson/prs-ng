@@ -10,12 +10,18 @@ export class SystemService {
 
   constructor(private router: Router) {}
 
+  isLoggedIn(): boolean{
+    return this.loggedInUser != null ? true : false;
+  }
+
   isAdmin(): boolean {
-    return this.loggedInUser == null ? false : this.loggedInUser.isAdmin;
+    return this.loggedInUser == null ? false : this.loggedInUser.admin;
   }
+
   isReviewer(): boolean {
-    return this.loggedInUser == null ? false : this.loggedInUser.isReviewer;
+    return this.loggedInUser == null ? false : this.loggedInUser.reviewer;
   }
+
   checkLogin(): void {
     // if user is not logged in, send to login page
     // commenting out for testing purposes

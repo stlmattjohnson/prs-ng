@@ -46,11 +46,11 @@
       <td>{{ r.user.userName }}</td>
       <td>{{ r.description }}</td>
       <td>{{ r.justification }}</td>
-      <td>{{ r.dateNeeded }}</td>
+      <td>{{ r.dateNeeded | date }}</td>
       <td>{{ r.deliveryMode }}</td>
       <td>{{ r.status }}</td>
-      <td>{{ r.total }}</td>
-      <td>{{ r.submittedDate }}</td>
+      <td>{{ r.total | currency }}</td>
+      <td>{{ r.submittedDate | date: 'shortDate' }} {{ r.submittedDate | date: 'mediumTime' }}</td>
       <td>{{ r.reasonForRejection }}</td>
       <td>
         <a routerLink="/requests/detail/{{ r.id }}"
@@ -77,6 +77,11 @@
             src="assets/pencil-icon-hover.png"
             width="20"
             height="20"
+        /></a>
+        |
+        <a routerLink="/requests/request-lines/{{ r.id }}"
+          ><img class="default" src="assets/lines.png" width="20" height="20"/>
+          <img class="hover" src="assets/lines-hover.png" width="20" height="20"
         /></a>
       </td>
     </tr>

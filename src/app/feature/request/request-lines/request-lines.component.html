@@ -1,0 +1,114 @@
+<div class="component-content">
+  <div class="lefthalf">
+    <span class="component-title">{{ title }}</span>
+  </div>
+</div>
+
+<p *ngIf="!request">Loading...</p>
+
+<div class="seperator"></div>
+<table
+  *ngIf="request"
+  class="table table-sm table-striped table-borderless table-hover"
+  style="margin-bottom: 0px;"
+>
+  <thead class="thead-dark">
+    <tr>
+      <th>ID</th>
+      <th>Description</th>
+      <th>Status</th>
+      <th>Total</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>{{ request.id }}</td>
+      <td>{{ request.description }}</td>
+      <td>{{ request.status }}</td>
+      <td>{{ request.total | currency }}</td>
+    </tr>
+  </tbody>
+</table>
+<div class="lineadd">
+  Add Lines
+  <a routerLink="/line-items/create/{{ request.id }}">
+    <img
+      class="default"
+      src="assets/add-icon.png"
+      width="20"
+      height="20"
+      title="Add New"
+      style="position: relative; top: -2px;"/>
+    <img
+      class="hover"
+      src="assets/add-icon-hover.png"
+      width="20"
+      height="20"
+      title="Add New"
+      style="position: relative; top: -2px;"
+  /></a>
+</div>
+<div *ngIf="lineitems.length == 0" class="nolines">
+  No line items yet. Click above to create a new line item for this request.
+</div>
+
+<table
+  *ngIf="lineitems.length > 0"
+  class="table table-sm table-striped table-borderless table-hover"
+>
+  <thead class="thead-dark">
+    <tr>
+      <th>ID</th>
+      <th>Product</th>
+      <th>Quantity</th>
+      <th>Price</th>
+      <th>Line Total</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let l of lineitems">
+      <td>{{ l.id }}</td>
+      <td>{{ l.product.name }}</td>
+      <td>{{ l.quantity }}</td>
+      <td>{{ l.product.price | currency }}</td>
+      <td>{{ l.product.price * l.quantity | currency }}</td>
+      <td>
+        <a routerLink="/line-items/edit/{{ l.id }}"
+          ><img
+            class="default"
+            src="assets/pencil-icon.png"
+            width="20"
+            height="20"/>
+          <img
+            class="hover"
+            src="assets/pencil-icon-hover.png"
+            width="20"
+            height="20"
+        /></a>
+        |
+        <a (click)="delete(l.id)" onclick="location.reload(true)"
+          ><img class="default" src="assets/delete.png" width="20" height="20"/>
+          <img
+            class="hover"
+            src="assets/delete-hover.png"
+            width="20"
+            height="20"
+        /></a>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<div style="margin-left: 10px;">
+  <span
+    ><button (click)="submitForReview()" class="btn btn-sm btn-primary">
+      Submit for Review
+    </button></span
+  >
+  <span>
+    |
+    <button (click)="backClicked()" class="btn btn-sm btn-secondary">
+      Back
+    </button></span
+  >
+</div>

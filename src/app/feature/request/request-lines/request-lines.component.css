@@ -1,0 +1,13 @@
+.lineadd {
+  background: linear-gradient(to right, #343a40 20%, rgb(169, 29, 49) 50%);
+  color: white;
+  font-weight: 700;
+  padding: 2px 5px;
+}
+.nolines {
+  background-color: rgb(169, 29, 49);
+  color: white;
+  font-weight: 700;
+  padding: 2px 5px;
+  text-align: center;
+}

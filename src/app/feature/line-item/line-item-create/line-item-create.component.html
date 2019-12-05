@@ -1,0 +1,48 @@
+<div class="component-content">
+  <div class="lefthalf">
+    <span class="component-title">{{ title }} </span>
+  </div>
+</div>
+
+<p *ngIf="!lineitem">Loading...</p>
+
+<div *ngIf="lineitem">
+  <div class="seperator"></div>
+  <main class="single">
+    <table class="table table-sm table-borderless" style="table-layout: fixed;">
+      <tr>
+        <th style="width: 15%;">Product:</th>
+        <td>
+          <select [(ngModel)]="lineitem.product" style="width: 250px;">
+            <option *ngFor="let p of products" [ngValue]="p">{{
+              p.name
+            }}</option>
+          </select>
+        </td>
+      </tr>
+      <tr>
+        <th>Quantity:</th>
+        <td>
+          <input [(ngModel)]="lineitem.quantity" type="number" />
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <span>
+            <span
+              ><button (click)="save()" class="btn btn-sm btn-primary">
+                Save
+              </button></span
+            >
+            <span>
+              |
+              <button (click)="backClicked()" class="btn btn-sm btn-secondary">
+                Back
+              </button></span
+            >
+          </span>
+        </td>
+      </tr>
+    </table>
+  </main>
+</div>

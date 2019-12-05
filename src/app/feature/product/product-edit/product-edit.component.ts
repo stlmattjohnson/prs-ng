@@ -37,8 +37,8 @@ export class ProductEditComponent implements OnInit {
     });
   }
 
-  save(): void {
-    this.productSvc.save(this.product).subscribe(jr => {
+  update(): void {
+    this.productSvc.update(this.product).subscribe(jr => {
       this.router.navigateByUrl("/products/list");
     });
   }

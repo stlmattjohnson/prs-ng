@@ -41,11 +41,7 @@ export class UserDetailComponent implements OnInit {
   }
 
   deletePressed(): void {
-    if (!this.isDeletePressed) {
-      this.isDeletePressed = true;
-    } else {
-      this.isDeletePressed = false;
-    }
+    this.isDeletePressed = this.isDeletePressed == true ? false : true;
   }
 
   backClicked() {

@@ -13,11 +13,16 @@ import { ProductCreateComponent } from "./feature/product/product-create/product
 import { ProductDetailComponent } from "./feature/product/product-detail/product-detail.component";
 import { ProductEditComponent } from "./feature/product/product-edit/product-edit.component";
 import { RequestListComponent } from "./feature/request/request-list/request-list.component";
-import { UserLoginComponent } from './feature/user/user-login/user-login.component';
+import { UserLoginComponent } from "./feature/user/user-login/user-login.component";
+import { RequestCreateComponent } from "./feature/request/request-create/request-create.component";
+import { RequestDetailComponent } from "./feature/request/request-detail/request-detail.component";
+import { RequestEditComponent } from "./feature/request/request-edit/request-edit.component";
+import { RequestLinesComponent } from "./feature/request/request-lines/request-lines.component";
+import { LineItemCreateComponent } from "./feature/line-item/line-item-create/line-item-create.component";
+import { LineItemEditComponent } from "./feature/line-item/line-item-edit/line-item-edit.component";
 
 const routes: Routes = [
-  { path: "", redirectTo: "/home", pathMatch: "full" },
-  { path: "home", component: UserListComponent },
+  { path: "", redirectTo: "users/login", pathMatch: "full" },
   { path: "users/login", component: UserLoginComponent },
   { path: "users/list", component: UserListComponent },
   { path: "users/create", component: UserCreateComponent },
@@ -31,7 +36,20 @@ const routes: Routes = [
   { path: "products/create", component: ProductCreateComponent },
   { path: "products/detail/:id", component: ProductDetailComponent },
   { path: "products/edit/:id", component: ProductEditComponent },
-  { path: "requests/list", component: RequestListComponent }
+  { path: "requests/list", component: RequestListComponent },
+  { path: "requests/create", component: RequestCreateComponent },
+  { path: "requests/detail/:id", component: RequestDetailComponent },
+  { path: "requests/edit/:id", component: RequestEditComponent },
+  { path: "requests/request-lines/:id", component: RequestLinesComponent },
+  {
+    path: "line-items/create/:id",
+    component: LineItemCreateComponent
+  },
+  {
+    path: "line-items/edit/:id",
+    component: LineItemEditComponent
+  },
+  { path: "**", component: UserLoginComponent }
 ];
 
 @NgModule({
