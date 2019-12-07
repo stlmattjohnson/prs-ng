@@ -33,7 +33,7 @@
 <div class="lineadd">
   Add Lines
   <div *ngIf="request.status == 'New'" style="display: inline-block;">
-    <a routerLink="/line-items/create/{{ request.id }}">
+    <a (click)="addPressed()">
       <img
         class="default"
         src="assets/add-icon.png"
@@ -51,6 +51,35 @@
     /></a>
   </div>
 </div>
+
+<table
+  *ngIf="isAddPressed"
+  class="table table-sm table-striped table-borderless table-hover"
+  style="margin-bottom: 0;"
+>
+  <thead class="thead-dark">
+    <tr *ngIf="isAddPressed">
+      <th>
+        Select Product:
+        <select [(ngModel)]="lineitem.product" style="width: 250px;">
+          <option *ngFor="let p of products" [ngValue]="p">{{ p.name }}</option>
+        </select>
+      </th>
+      <th>
+        Select Quantity:
+        <input [(ngModel)]="lineitem.quantity" type="number" />
+      </th>
+      <th>
+        Add Line:
+        <button (click)="saveLine()" class="btn btn-sm btn-primary">
+          Save
+        </button>
+      </th>
+      <th style="width: 30%;"></th>
+    </tr>
+  </thead>
+</table>
+
 <div *ngIf="lineitems.length == 0" class="nolines">
   No line items yet. Click above to create a new line item for this request.
 </div>
@@ -109,12 +138,18 @@
   </tbody>
 </table>
 <div style="margin-left: 10px;">
-  <div *ngIf="lineitems.length != 0 && request.status == 'New'" style="display: inline-block;">
+  <div
+    *ngIf="lineitems.length != 0 && request.status == 'New'"
+    style="display: inline-block;"
+  >
     <button (click)="submitForReview()" class="btn btn-sm btn-primary">
       Submit for Review</button
     >&nbsp;|&nbsp;
   </div>
-  <div *ngIf="request.status == 'Rejected'" style="display: inline-block;">
+  <div
+    *ngIf="lineitems.length != 0 && request.status == 'Rejected'"
+    style="display: inline-block;"
+  >
     <button (click)="updateRequest()" class="btn btn-sm btn-danger">
       Update Request</button
     >&nbsp;|&nbsp;

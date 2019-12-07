@@ -23,6 +23,7 @@ import { LineItemEditComponent } from "./feature/line-item/line-item-edit/line-i
 import { RequestReviewComponent } from "./feature/request/request-review/request-review.component";
 import { RequestApproveComponent } from "./feature/request/request-approve/request-approve.component";
 import { RequestReportingComponent } from "./feature/request/request-reporting/request-reporting.component";
+import { AboutComponent } from "./core/about/about.component";
 
 const routes: Routes = [
   { path: "", redirectTo: "users/login", pathMatch: "full" },
@@ -55,6 +56,7 @@ const routes: Routes = [
     path: "line-items/edit/:id",
     component: LineItemEditComponent
   },
+  { path: "about", component: AboutComponent },
   { path: "**", component: UserLoginComponent }
 ];
 

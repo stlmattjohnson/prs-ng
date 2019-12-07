@@ -1,7 +1,7 @@
 .body {
   background-color: #343a40;
   width: 100%;
-  height: 100vh;
+  height: calc(100vh - 30px);
 }
 .login {
   position: relative;

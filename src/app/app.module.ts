@@ -32,6 +32,7 @@ import { LineItemEditComponent } from "./feature/line-item/line-item-edit/line-i
 import { RequestReviewComponent } from "./feature/request/request-review/request-review.component";
 import { RequestApproveComponent } from "./feature/request/request-approve/request-approve.component";
 import { RequestReportingComponent } from './feature/request/request-reporting/request-reporting.component';
+import { AboutComponent } from './core/about/about.component';
 
 @NgModule({
   declarations: [
@@ -62,7 +63,8 @@ import { RequestReportingComponent } from './feature/request/request-reporting/r
     LineItemEditComponent,
     RequestReviewComponent,
     RequestApproveComponent,
-    RequestReportingComponent
+    RequestReportingComponent,
+    AboutComponent
   ],
   imports: [BrowserModule, HttpClientModule, FormsModule, AppRoutingModule, ChartsModule],
   providers: [],

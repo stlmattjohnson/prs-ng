@@ -90,7 +90,7 @@
           <div
             *ngIf="
               systemSvc.loggedInUser.admin === true ||
-              systemSvc.loggedInUser.id == request.user.id
+              systemSvc.loggedInUser.id == request.user.id && request.status != 'Approved'
             "
             style="display: inline-block;"
           >
