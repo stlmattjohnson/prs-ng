@@ -4,11 +4,16 @@
     <span class="component-title">{{ title }} </span>
   </div>
 </div>
-<div *ngIf="isLoaded == true && barChartData && pieChartData">
+<br />
+<div
+  *ngIf="isLoaded == true && barChartData && pieChartData"
+  style=" text-align: center; font-weight: 700; font-size: x-large;"
+>
   <div style="display: inline-block; width: 50%;">
+    Request Total by User
     <canvas
       baseChart
-      [data]="barChartData"
+      [datasets]="barChartData"
       [labels]="barChartLabels"
       [legend]="barChartLegend"
       [chartType]="barChartType"
@@ -17,6 +22,7 @@
     </canvas>
   </div>
   <div style="display: inline-block; width: 50%;">
+    Request Total by Vendor
     <canvas
       baseChart
       [data]="pieChartData"

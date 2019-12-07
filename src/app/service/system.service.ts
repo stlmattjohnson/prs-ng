@@ -22,6 +22,10 @@ export class SystemService {
     return this.loggedInUser == null ? false : this.loggedInUser.reviewer;
   }
 
+  logout(): void{
+    this.loggedInUser = null;
+  }
+
   checkLogin(): void {
     // if user is not logged in, send to login page
     // commenting out for testing purposes

@@ -29,9 +29,9 @@ export class RequestReportingComponent implements OnInit {
   pieChartColors: Color[] = [
     {
       backgroundColor: [
-        "rgba(255,0,0,0.3)",
-        "rgba(0,255,0,0.3)",
-        "rgba(0,0,255,0.3)"
+        "rgba(200,145,90,0.3)",
+        "rgba(90,200,145,0.3)",
+        "rgba(145,90,200,0.3)"
       ]
     }
   ];
@@ -39,10 +39,18 @@ export class RequestReportingComponent implements OnInit {
   barChartLabels = [];
   barChartType = "bar";
   barChartLegend = true;
-  barChartData = [];
+
+  barChartData = [
+    {
+      label: "Request Total",
+      data: []
+    }
+  ];
+
   barChartColors: Color[] = [
     {
       backgroundColor: [
+        "rgba(200,255,145,0.3)",
         "rgba(255,200,145,0.3)",
         "rgba(145,255,200,0.3)",
         "rgba(200,145,255,0.3)",
@@ -51,8 +59,7 @@ export class RequestReportingComponent implements OnInit {
         "rgba(145,90,200,0.3)",
         "rgba(90,145,200,0.3)",
         "rgba(200,90,145,0.3)",
-        "rgba(145,200,90,0.3)",
-        "rgba(200,255,145,0.3)"
+        "rgba(145,200,90,0.3)"
       ]
     }
   ];
@@ -65,26 +72,7 @@ export class RequestReportingComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.userSvc.list().subscribe(jr => {
-      this.users = jr.data as User[];
-      this.barChartLabels = [];
-      this.barChartData = [];
-      for (let u of this.users) {
-        this.barChartLabels.push(u.userName);
-        this.requestSvc.list().subscribe(jr => {
-          this.requests = jr.data as Request[];
-          let total: number = 0;
-          for (let r of this.requests) {
-            if (r.user.id == u.id) {
-              total += r.total;
-            }
-          }
-          this.barChartData.push(total.toFixed(2));
-          console.log("User " + u.userName + " total spent " + total);
-        });
-        this.isLoaded = true;
-      }
-    });
+    this.populateBarChart();
 
     this.vendorSvc.list().subscribe(jr => {
       this.vendors = jr.data as Vendor[];
@@ -116,6 +104,27 @@ export class RequestReportingComponent implements OnInit {
       this.pieChartData.push(hdsupply.toFixed(2));
       this.pieChartData.push(mayfair.toFixed(2));
       this.isLoaded = true;
+    });
+  }
+
+  populateBarChart(): void {
+    this.userSvc.list().subscribe(jr => {
+      this.users = jr.data as User[];
+      this.barChartLabels = [];
+      for (let u of this.users) {
+        this.requestSvc.list().subscribe(jr => {
+          this.requests = jr.data as Request[];
+          let total: number = 0;
+          this.barChartLabels.push(u.userName);
+          for (let r of this.requests) {
+            if (r.user.id == u.id) {
+              total += r.total;
+            }
+          }
+          this.barChartData[0].data.push(total.toFixed(2));
+        });
+        this.isLoaded = true;
+      }
     });
   }
 }

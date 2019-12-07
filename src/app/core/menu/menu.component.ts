@@ -1,6 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { MenuItem } from "src/app/model/menu-item.class";
 import { SystemService } from "src/app/service/system.service";
+import { Router } from '@angular/router';
 
 @Component({
   selector: "app-menu",
@@ -11,7 +12,7 @@ export class MenuComponent implements OnInit {
   menuItems: MenuItem[] = [];
   id: number = 0;
 
-  constructor(protected systemSvc: SystemService) {}
+  constructor(protected systemSvc: SystemService, private router: Router) {}
 
   ngOnInit() {
     this.systemSvc.checkLogin();
@@ -44,5 +45,10 @@ export class MenuComponent implements OnInit {
         )
       );
     }
+  }
+
+  logout(): void {
+    this.router.navigateByUrl("/users/login")
+    this.systemSvc.logout();
   }
 }
