@@ -1,3 +1,4 @@
+<app-menu></app-menu>
 <div class="component-content">
   <div class="lefthalf">
     <span class="component-title">{{ title }}</span>
@@ -31,22 +32,24 @@
 </table>
 <div class="lineadd">
   Add Lines
-  <a routerLink="/line-items/create/{{ request.id }}">
-    <img
-      class="default"
-      src="assets/add-icon.png"
-      width="20"
-      height="20"
-      title="Add New"
-      style="position: relative; top: -2px;"/>
-    <img
-      class="hover"
-      src="assets/add-icon-hover.png"
-      width="20"
-      height="20"
-      title="Add New"
-      style="position: relative; top: -2px;"
-  /></a>
+  <div *ngIf="request.status == 'New'" style="display: inline-block;">
+    <a routerLink="/line-items/create/{{ request.id }}">
+      <img
+        class="default"
+        src="assets/add-icon.png"
+        width="20"
+        height="20"
+        title="Add New"
+        style="position: relative; top: -2px;"/>
+      <img
+        class="hover"
+        src="assets/add-icon-hover.png"
+        width="20"
+        height="20"
+        title="Add New"
+        style="position: relative; top: -2px;"
+    /></a>
+  </div>
 </div>
 <div *ngIf="lineitems.length == 0" class="nolines">
   No line items yet. Click above to create a new line item for this request.
@@ -74,41 +77,51 @@
       <td>{{ l.product.price | currency }}</td>
       <td>{{ l.product.price * l.quantity | currency }}</td>
       <td>
-        <a routerLink="/line-items/edit/{{ l.id }}"
-          ><img
-            class="default"
-            src="assets/pencil-icon.png"
-            width="20"
-            height="20"/>
-          <img
-            class="hover"
-            src="assets/pencil-icon-hover.png"
-            width="20"
-            height="20"
-        /></a>
-        |
-        <a (click)="delete(l.id)" onclick="location.reload(true)"
-          ><img class="default" src="assets/delete.png" width="20" height="20"/>
-          <img
-            class="hover"
-            src="assets/delete-hover.png"
-            width="20"
-            height="20"
-        /></a>
+        <div *ngIf="request.status == 'New'">
+          <a routerLink="/line-items/edit/{{ l.id }}"
+            ><img
+              class="default"
+              src="assets/pencil-icon.png"
+              width="20"
+              height="20"/>
+            <img
+              class="hover"
+              src="assets/pencil-icon-hover.png"
+              width="20"
+              height="20"
+          /></a>
+          |
+          <a (click)="delete(l.id)"
+            ><img
+              class="default"
+              src="assets/delete.png"
+              width="20"
+              height="20"/>
+            <img
+              class="hover"
+              src="assets/delete-hover.png"
+              width="20"
+              height="20"
+          /></a>
+        </div>
       </td>
     </tr>
   </tbody>
 </table>
 <div style="margin-left: 10px;">
-  <span
-    ><button (click)="submitForReview()" class="btn btn-sm btn-primary">
-      Submit for Review
-    </button></span
-  >
-  <span>
-    |
+  <div *ngIf="lineitems.length != 0 && request.status == 'New'" style="display: inline-block;">
+    <button (click)="submitForReview()" class="btn btn-sm btn-primary">
+      Submit for Review</button
+    >&nbsp;|&nbsp;
+  </div>
+  <div *ngIf="request.status == 'Rejected'" style="display: inline-block;">
+    <button (click)="updateRequest()" class="btn btn-sm btn-danger">
+      Update Request</button
+    >&nbsp;|&nbsp;
+  </div>
+  <div style="display: inline-block;">
     <button (click)="backClicked()" class="btn btn-sm btn-secondary">
       Back
-    </button></span
-  >
+    </button>
+  </div>
 </div>

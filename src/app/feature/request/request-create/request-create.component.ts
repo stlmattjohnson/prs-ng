@@ -27,7 +27,6 @@ export class RequestCreateComponent extends BaseComponent implements OnInit {
   ngOnInit() {
     super.ngOnInit();
     this.request.user = this.systemSvc.loggedInUser;
-    console.log(this.request);
   }
 
   save(): void {

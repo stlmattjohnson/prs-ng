@@ -16,6 +16,8 @@ export class ProductCreateComponent implements OnInit {
   product: Product = new Product();
   jr: JsonResponse;
   vendors: Vendor[] = [];
+  isImportPressed = false;
+  csvProducts: Product[] = [];
 
   constructor(
     private productSvc: ProductService,
@@ -33,5 +35,56 @@ export class ProductCreateComponent implements OnInit {
     this.productSvc.save(this.product).subscribe(jr => {
       this.router.navigateByUrl("/products/list");
     });
+  }
+
+  importPressed(): void {
+    this.isImportPressed = this.isImportPressed == true ? false : true;
+  }
+
+  getProductArrayFromCSVFile(csvRecordsArray: any) {
+    let csvProducts: Product[] = [];
+
+    for (let i = 1; i < csvRecordsArray.length - 1; i++) {
+      let data = csvRecordsArray[i].split(",");
+      let csvRecord: Product = new Product();
+      csvRecord.vendor = this.product.vendor;
+      csvRecord.partNumber = data[0].trim();
+      csvRecord.name = data[1].trim();
+      csvRecord.price = data[2].trim() as number;
+      csvRecord.unit = data[3].trim();
+      csvRecord.photoPath = data[4].trim();
+      csvProducts.push(csvRecord);
+    }
+    return csvProducts;
+  }
+
+  fileChangeListener($event: any): void {
+    let input = $event.target;
+    let reader = new FileReader();
+    reader.readAsText(input.files[0]);
+
+    reader.onload = data => {
+      let csvData = reader.result;
+      let csvRecordsArray = (<string>csvData).split(/\r\n|\n/);
+      this.csvProducts = this.getProductArrayFromCSVFile(csvRecordsArray);
+    };
+
+    reader.onerror = function() {
+      alert("Unable to read " + input.files[0]);
+    };
+  }
+
+  importFromCsv(): void {
+    console.log("In importFromCsv");
+    for (let i = 0; i < this.csvProducts.length; i++) {
+      let prod: Product = this.csvProducts[i];
+      console.log(prod);
+      this.productSvc.save(prod).subscribe(jr => {});
+    }
+    this.router.navigateByUrl("/products/list");
+  }
+
+  fileImportSave(): void {
+    this.importFromCsv();
   }
 }

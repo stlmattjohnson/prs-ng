@@ -1,3 +1,4 @@
+<app-menu></app-menu>
 <div class="component-content">
   <div class="lefthalf">
     <span class="component-title">{{ title }} </span>
@@ -50,7 +51,10 @@
       <td>{{ r.deliveryMode }}</td>
       <td>{{ r.status }}</td>
       <td>{{ r.total | currency }}</td>
-      <td>{{ r.submittedDate | date: 'shortDate' }} {{ r.submittedDate | date: 'mediumTime' }}</td>
+      <td>
+        {{ r.submittedDate | date: "shortDate" }}
+        {{ r.submittedDate | date: "mediumTime" }}
+      </td>
       <td>{{ r.reasonForRejection }}</td>
       <td>
         <a routerLink="/requests/detail/{{ r.id }}"
@@ -65,24 +69,40 @@
             width="20"
             height="20"
         /></a>
-        |
-        <a routerLink="/requests/edit/{{ r.id }}"
-          ><img
-            class="default"
-            src="assets/pencil-icon.png"
-            width="20"
-            height="20"/>
-          <img
-            class="hover"
-            src="assets/pencil-icon-hover.png"
-            width="20"
-            height="20"
-        /></a>
-        |
-        <a routerLink="/requests/request-lines/{{ r.id }}"
-          ><img class="default" src="assets/lines.png" width="20" height="20"/>
-          <img class="hover" src="assets/lines-hover.png" width="20" height="20"
-        /></a>
+        <div
+          *ngIf="
+            systemSvc.loggedInUser.admin === true ||
+            systemSvc.loggedInUser.id == r.user.id
+          "
+          style="display: inline-block;"
+        >
+          |
+          <a routerLink="/requests/edit/{{ r.id }}"
+            ><img
+              class="default"
+              src="assets/pencil-icon.png"
+              width="20"
+              height="20"/>
+            <img
+              class="hover"
+              src="assets/pencil-icon-hover.png"
+              width="20"
+              height="20"
+          /></a>
+          |
+          <a routerLink="/requests/request-lines/{{ r.id }}"
+            ><img
+              class="default"
+              src="assets/lines.png"
+              width="20"
+              height="20"/>
+            <img
+              class="hover"
+              src="assets/lines-hover.png"
+              width="20"
+              height="20"
+          /></a>
+        </div>
       </td>
     </tr>
   </tbody>

@@ -1,0 +1,28 @@
+<app-menu></app-menu>
+<div class="component-content">
+  <div class="lefthalf">
+    <span class="component-title">{{ title }} </span>
+  </div>
+</div>
+<div *ngIf="isLoaded == true && barChartData && pieChartData">
+  <div style="display: inline-block; width: 50%;">
+    <canvas
+      baseChart
+      [data]="barChartData"
+      [labels]="barChartLabels"
+      [legend]="barChartLegend"
+      [chartType]="barChartType"
+      [colors]="barChartColors"
+    >
+    </canvas>
+  </div>
+  <div style="display: inline-block; width: 50%;">
+    <canvas
+      baseChart
+      [data]="pieChartData"
+      [labels]="pieChartLabels"
+      [chartType]="pieChartType"
+      [colors]="pieChartColors"
+    ></canvas>
+  </div>
+</div>

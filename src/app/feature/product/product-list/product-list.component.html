@@ -1,24 +1,30 @@
+<app-menu></app-menu>
 <div class="component-content">
   <div class="lefthalf">
     <span class="component-title">{{ title }} </span>
-    <span>
-      <a routerLink="/products/create">
-        <img
-          class="default"
-          src="assets/add-icon.png"
-          width="20"
-          height="20"
-          title="Add New"
-          style="position: relative; top: -2px;"/>
-        <img
-          class="hover"
-          src="assets/add-icon-hover.png"
-          width="20"
-          height="20"
-          title="Add New"
-          style="position: relative; top: -2px;"
-      /></a>
-    </span>
+    <div
+      *ngIf="systemSvc.loggedInUser.admin === true"
+      style="display: inline-block;"
+    >
+      <span>
+        <a routerLink="/products/create">
+          <img
+            class="default"
+            src="assets/add-icon.png"
+            width="20"
+            height="20"
+            title="Add New"
+            style="position: relative; top: -2px;"/>
+          <img
+            class="hover"
+            src="assets/add-icon-hover.png"
+            width="20"
+            height="20"
+            title="Add New"
+            style="position: relative; top: -2px;"
+        /></a>
+      </span>
+    </div>
   </div>
 </div>
 <table
@@ -73,19 +79,24 @@
             width="20"
             height="20"
         /></a>
-        |
-        <a routerLink="/products/edit/{{ p.id }}"
-          ><img
-            class="default"
-            src="assets/pencil-icon.png"
-            width="20"
-            height="20"/>
-          <img
-            class="hover"
-            src="assets/pencil-icon-hover.png"
-            width="20"
-            height="20"
-        /></a>
+        <div
+          *ngIf="systemSvc.loggedInUser.admin === true"
+          style="display: inline-block;"
+        >
+        &nbsp;|
+          <a routerLink="/products/edit/{{ p.id }}"
+            ><img
+              class="default"
+              src="assets/pencil-icon.png"
+              width="20"
+              height="20"/>
+            <img
+              class="hover"
+              src="assets/pencil-icon-hover.png"
+              width="20"
+              height="20"
+          /></a>
+        </div>
       </td>
     </tr>
   </tbody>

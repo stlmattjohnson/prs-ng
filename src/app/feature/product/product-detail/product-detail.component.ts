@@ -6,13 +6,15 @@ import { Router, ActivatedRoute } from "@angular/router";
 import { Location } from "@angular/common";
 import { Vendor } from "src/app/model/vendor.class";
 import { VendorService } from "src/app/service/vendor.service";
+import { SystemService } from "src/app/service/system.service";
+import { BaseComponent } from "../../base/base.component";
 
 @Component({
   selector: "app-product-detail",
   templateUrl: "./product-detail.component.html",
   styleUrls: ["./product-detail.component.css"]
 })
-export class ProductDetailComponent implements OnInit {
+export class ProductDetailComponent extends BaseComponent implements OnInit {
   title: string = "Product Detail";
   product: Product = new Product();
   jr: JsonResponse;
@@ -21,12 +23,15 @@ export class ProductDetailComponent implements OnInit {
   isDeletePressed: boolean = false;
 
   constructor(
+    protected systemSvc: SystemService,
     private productSvc: ProductService,
     private vendorSvc: VendorService,
     private router: Router,
     private route: ActivatedRoute,
     private loc: Location
-  ) {}
+  ) {
+    super(systemSvc);
+  }
 
   ngOnInit() {
     this.route.params.subscribe(parms => (this.id = parms["id"]));

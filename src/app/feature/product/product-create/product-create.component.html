@@ -1,3 +1,4 @@
+<app-menu></app-menu>
 <div class="component-content">
   <div class="lefthalf">
     <span class="component-title">{{ title }} </span>
@@ -13,26 +14,26 @@
       <tr>
         <th style="width: 15%;">Vendor:</th>
         <td>
-          <select [(ngModel)]="product.vendor" style="width: 250px;">
+          <select [(ngModel)]="product.vendor" style="width: 250px;" required>
             <option *ngFor="let v of vendors" [ngValue]="v">{{
               v.name
             }}</option>
           </select>
         </td>
       </tr>
-      <tr>
+      <tr *ngIf="!isImportPressed">
         <th>Part Number:</th>
         <td>
-          <input [(ngModel)]="product.partNumber" type="text" maxlength="50" />
+          <input [(ngModel)]="product.partNumber" type="text" maxlength="50" required />
         </td>
       </tr>
-      <tr>
+      <tr *ngIf="!isImportPressed">
         <th>Name:</th>
         <td>
-          <input [(ngModel)]="product.name" type="text" maxlength="150" />
+          <input [(ngModel)]="product.name" type="text" maxlength="150" required />
         </td>
       </tr>
-      <tr>
+      <tr *ngIf="!isImportPressed">
         <th>Price:</th>
         <td>
           <input
@@ -40,25 +41,50 @@
             type="number"
             max="9999999999.99"
             step=".01"
+            required
+          />
+        </td>
+      </tr>
+      <tr *ngIf="!isImportPressed">
+        <th>Unit:</th>
+        <td>
+          <input [(ngModel)]="product.unit" type="text" maxlength="255" required />
+        </td>
+      </tr>
+      <tr *ngIf="!isImportPressed">
+        <th>Photo Path:</th>
+        <td>
+          <input [(ngModel)]="product.photoPath" type="text" maxlength="255" required />
+        </td>
+      </tr>
+      <tr></tr>
+      <tr *ngIf="isImportPressed">
+        <th>File Upload:</th>
+        <td>
+          <input
+            type="file"
+            #fileImportInput
+            name="File Upload"
+            id="txtFileUpload"
+            (change)="fileChangeListener($event)"
+            accept=".csv"
           />
         </td>
       </tr>
       <tr>
-        <th>Unit:</th>
-        <td>
-          <input [(ngModel)]="product.unit" type="text" maxlength="255" />
-        </td>
-      </tr>
-      <tr>
-        <th>Photo Path:</th>
-        <td>
-          <input [(ngModel)]="product.photoPath" type="text" maxlength="255" />
-        </td>
-      </tr>
-      <tr>
         <td colspan="2">
-          <button (click)="save()" class="btn btn-sm btn-primary">
+          <button *ngIf="!isImportPressed" (click)="save()" class="btn btn-sm btn-primary">
             Save
+          </button>
+          <button *ngIf="isImportPressed" (click)="fileImportSave()" class="btn btn-sm btn-primary">
+            Save
+          </button>
+          |
+          <button *ngIf="!isImportPressed" (click)="importPressed()" class="btn btn-sm btn-secondary">
+            File Import
+          </button>
+          <button *ngIf="isImportPressed" (click)="importPressed()" class="btn btn-sm btn-secondary">
+            Cancel
           </button>
         </td>
       </tr>

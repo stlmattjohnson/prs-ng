@@ -25,8 +25,8 @@ export class SystemService {
   checkLogin(): void {
     // if user is not logged in, send to login page
     // commenting out for testing purposes
-    // if(this.loggedInUser == null) {
-    //   this.router.navigateByUrl("/users/login");
-    // }
+    if(this.loggedInUser == null) {
+      this.router.navigateByUrl("/users/login");
+    }
   }
 }

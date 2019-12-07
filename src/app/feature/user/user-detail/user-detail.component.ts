@@ -4,13 +4,15 @@ import { JsonResponse } from "src/app/model/json-response.class";
 import { UserService } from "src/app/service/user.service";
 import { Router, ActivatedRoute } from "@angular/router";
 import { Location } from "@angular/common";
+import { SystemService } from "src/app/service/system.service";
+import { BaseComponent } from "../../base/base.component";
 
 @Component({
   selector: "app-user-detail",
   templateUrl: "./user-detail.component.html",
   styleUrls: ["./user-detail.component.css"]
 })
-export class UserDetailComponent implements OnInit {
+export class UserDetailComponent extends BaseComponent implements OnInit {
   title: string = "User Detail";
   user: User = new User();
   jr: JsonResponse;
@@ -18,13 +20,17 @@ export class UserDetailComponent implements OnInit {
   isDeletePressed: boolean = false;
 
   constructor(
+    protected systemSvc: SystemService,
     private userSvc: UserService,
     private router: Router,
     private route: ActivatedRoute,
     private loc: Location
-  ) {}
+  ) {
+    super(systemSvc);
+  }
 
   ngOnInit() {
+    super.ngOnInit();
     this.route.params.subscribe(parms => (this.id = parms["id"]));
     this.userSvc.get(this.id).subscribe(jr => {
       this.user = jr.data as User;

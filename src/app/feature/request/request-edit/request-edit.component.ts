@@ -6,13 +6,15 @@ import { Router, ActivatedRoute } from "@angular/router";
 import { Location } from "@angular/common";
 import { User } from "src/app/model/user.class";
 import { UserService } from "src/app/service/user.service";
+import { SystemService } from "src/app/service/system.service";
+import { BaseComponent } from "../../base/base.component";
 
 @Component({
   selector: "app-request-edit",
   templateUrl: "./request-edit.component.html",
   styleUrls: ["./request-edit.component.css"]
 })
-export class RequestEditComponent implements OnInit {
+export class RequestEditComponent extends BaseComponent implements OnInit {
   title: string = "Request Edit";
   request: Request = new Request();
   users: User[] = [];
@@ -20,14 +22,18 @@ export class RequestEditComponent implements OnInit {
   id: number = 0;
 
   constructor(
+    protected systemSvc: SystemService,
     private requestSvc: RequestService,
     private userSvc: UserService,
     private router: Router,
     private route: ActivatedRoute,
     private loc: Location
-  ) {}
+  ) {
+    super(systemSvc);
+  }
 
   ngOnInit() {
+    super.ngOnInit();
     this.route.params.subscribe(parms => (this.id = parms["id"]));
     this.requestSvc.get(this.id).subscribe(jr => {
       this.request = jr.data as Request;

@@ -29,6 +29,10 @@ export class RequestLinesComponent implements OnInit {
 
   ngOnInit() {
     this.route.params.subscribe(parms => (this.id = parms["id"]));
+    this.loadData();
+  }
+
+  loadData(): void {
     this.requestSvc.get(this.id).subscribe(jr => {
       this.request = jr.data as Request;
     });
@@ -48,12 +52,21 @@ export class RequestLinesComponent implements OnInit {
       if (jr.errors != null) {
         console.log("Error deleting Product: " + jr.errors);
       }
+      this.loadData();
     });
   }
 
   submitForReview(): void {
     this.requestSvc.submitForReview(this.request).subscribe(jr => {
       this.router.navigateByUrl("/requests/list");
+    });
+  }
+
+  updateRequest(): void {
+    this.request.status = "New";
+    this.request.reasonForRejection = "";
+    this.requestSvc.update(this.request).subscribe(jr => {
+      this.loadData();
     });
   }
 

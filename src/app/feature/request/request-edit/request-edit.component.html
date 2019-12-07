@@ -1,3 +1,4 @@
+<app-menu></app-menu>
 <div class="component-content">
   <div class="lefthalf">
     <span class="component-title">{{ title }}</span>
@@ -10,13 +11,14 @@
   <div class="seperator"></div>
   <main class="single">
     <table class="table table-sm table-borderless" style="table-layout: fixed;">
-      <tr>
+      <tr *ngIf="systemSvc.loggedInUser.admin === true">
         <th style="width: 15%;">User:</th>
         <td>
           <select
             [(ngModel)]="request.user"
             style="width: 200px;"
             [compareWith]="compUser"
+            required
           >
             <option *ngFor="let u of users" [ngValue]="u"
               >{{ u.firstName }} {{ u.lastName }}</option
@@ -25,12 +27,13 @@
         </td>
       </tr>
       <tr>
-        <th>Description:</th>
+        <th style="width: 15%;">Description:</th>
         <td>
           <input
             [(ngModel)]="request.description"
             type="text"
             maxlength="100"
+            required
           />
         </td>
       </tr>
@@ -41,6 +44,7 @@
             [(ngModel)]="request.justification"
             type="text"
             maxlength="255"
+            required
           />
         </td>
       </tr>
@@ -68,7 +72,7 @@
       <tr>
         <th>Date Needed:</th>
         <td>
-          <input [(ngModel)]="request.dateNeeded" type="date" />
+          <input [(ngModel)]="request.dateNeeded" type="date" required />
         </td>
       </tr>
       <tr>

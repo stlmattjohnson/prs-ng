@@ -1,3 +1,4 @@
+<app-menu></app-menu>
 <div class="component-content">
   <div class="lefthalf">
     <span class="component-title">{{ title }}</span>
@@ -86,7 +87,13 @@
       </tr>
       <tr *ngIf="!isDeletePressed">
         <td colspan="2">
-          <span>
+          <div
+            *ngIf="
+              systemSvc.loggedInUser.admin === true ||
+              systemSvc.loggedInUser.id == request.user.id
+            "
+            style="display: inline-block;"
+          >
             <span
               ><button (click)="deletePressed()" class="btn btn-sm btn-danger">
                 Delete
@@ -99,15 +106,15 @@
                 class="btn btn-sm btn-primary"
               >
                 Edit
-              </button></span
+              </button>
+              |&nbsp;</span
             >
-            <span>
-              |
-              <button (click)="backClicked()" class="btn btn-sm btn-secondary">
-                Back
-              </button></span
-            >
-          </span>
+          </div>
+          <span>
+            <button (click)="backClicked()" class="btn btn-sm btn-secondary">
+              Back
+            </button></span
+          >
         </td>
       </tr>
       <tr *ngIf="isDeletePressed">
