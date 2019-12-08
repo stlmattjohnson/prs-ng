@@ -5,6 +5,7 @@ import { Vendor } from "src/app/model/vendor.class";
 import { ProductService } from "src/app/service/product.service";
 import { VendorService } from "src/app/service/vendor.service";
 import { Router } from "@angular/router";
+import { Location } from '@angular/common';
 
 @Component({
   selector: "app-product-create",
@@ -22,7 +23,8 @@ export class ProductCreateComponent implements OnInit {
   constructor(
     private productSvc: ProductService,
     private vendorSvc: VendorService,
-    private router: Router
+    private router: Router,
+    private loc: Location
   ) {}
 
   ngOnInit() {
@@ -87,4 +89,9 @@ export class ProductCreateComponent implements OnInit {
   fileImportSave(): void {
     this.importFromCsv();
   }
+
+  backClicked(){
+    this.loc.back();
+  }
 }
+

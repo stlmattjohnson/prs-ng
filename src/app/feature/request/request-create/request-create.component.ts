@@ -5,6 +5,7 @@ import { RequestService } from "src/app/service/request.service";
 import { Router } from "@angular/router";
 import { SystemService } from "src/app/service/system.service";
 import { BaseComponent } from "../../base/base.component";
+import { Location } from "@angular/common";
 
 @Component({
   selector: "app-request-create",
@@ -19,7 +20,8 @@ export class RequestCreateComponent extends BaseComponent implements OnInit {
   constructor(
     protected systemSvc: SystemService,
     private requestSvc: RequestService,
-    private router: Router
+    private router: Router,
+    private loc: Location
   ) {
     super(systemSvc);
   }
@@ -33,5 +35,9 @@ export class RequestCreateComponent extends BaseComponent implements OnInit {
     this.requestSvc.save(this.request).subscribe(jr => {
       this.router.navigateByUrl("/requests/list");
     });
+  }
+
+  backClicked() {
+    this.loc.back();
   }
 }

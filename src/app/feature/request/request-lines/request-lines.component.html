@@ -70,9 +70,12 @@
         <input [(ngModel)]="lineitem.quantity" type="number" />
       </th>
       <th>
-        Add Line:
         <button (click)="saveLine()" class="btn btn-sm btn-primary">
-          Save
+          Add Line
+        </button>
+        |
+        <button (click)="addPressed()" class="btn btn-sm btn-secondary">
+          Cancel
         </button>
       </th>
       <th style="width: 30%;"></th>
@@ -90,36 +93,65 @@
 >
   <thead class="thead-dark">
     <tr>
-      <th>ID</th>
-      <th>Product</th>
-      <th>Quantity</th>
-      <th>Price</th>
-      <th>Line Total</th>
-      <th>Action</th>
+      <th style="width:10%">ID</th>
+      <th style="width:35%">Product</th>
+      <th style="width:15%">Quantity</th>
+      <th style="width:15%">Price</th>
+      <th style="width:15%">Line Total</th>
+      <th style="width:10%">Action</th>
     </tr>
   </thead>
   <tbody>
     <tr *ngFor="let l of lineitems">
       <td>{{ l.id }}</td>
-      <td>{{ l.product.name }}</td>
-      <td>{{ l.quantity }}</td>
+      <td *ngIf="lineItemUpdate.id != l.id">{{ l.product.name }}</td>
+      <td *ngIf="lineItemUpdate.id == l.id">
+        <select
+          [(ngModel)]="lineItemUpdate.product"
+          style="width: 250px; height: 25px"
+          [compareWith]="compProduct"
+        >
+          <option *ngFor="let p of products" [ngValue]="p">{{ p.name }}</option>
+        </select>
+      </td>
+      <td *ngIf="lineItemUpdate.id != l.id">{{ l.quantity }}</td>
+      <td *ngIf="lineItemUpdate.id == l.id">
+        <input [(ngModel)]="lineItemUpdate.quantity" type="number" style="width: 70px; height: 25px;" required/>
+      </td>
       <td>{{ l.product.price | currency }}</td>
       <td>{{ l.product.price * l.quantity | currency }}</td>
       <td>
         <div *ngIf="request.status == 'New'">
-          <a routerLink="/line-items/edit/{{ l.id }}"
-            ><img
-              class="default"
-              src="assets/pencil-icon.png"
-              width="20"
-              height="20"/>
-            <img
-              class="hover"
-              src="assets/pencil-icon-hover.png"
-              width="20"
-              height="20"
-          /></a>
-          |
+          <div *ngIf="lineItemUpdate.id == 0 || l.id != lineItemUpdate.id" style="display: inline-block;">
+            <a (click)="updateLineItem(l.id)">
+              <img
+                class="default"
+                src="assets/pencil-icon.png"
+                width="20"
+                height="20"/>
+              <img
+                class="hover"
+                src="assets/pencil-icon-hover.png"
+                width="20"
+                height="20"
+            /></a>
+            |
+          </div>
+          <div *ngIf="lineItemUpdate.id != 0 && l.id == lineItemUpdate.id" style="display: inline-block;">
+            <a (click)="saveUpdatedLine()">
+              <img
+                class="default"
+                src="assets/add-icon-black.png"
+                width="20"
+                height="20"/>
+              <img
+                class="hover"
+                src="assets/add-icon-hover.png"
+                width="20"
+                height="20"
+            /></a>
+            |
+          </div>
           <a (click)="delete(l.id)"
             ><img
               class="default"

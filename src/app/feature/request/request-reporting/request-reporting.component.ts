@@ -29,9 +29,9 @@ export class RequestReportingComponent implements OnInit {
   pieChartColors: Color[] = [
     {
       backgroundColor: [
-        "rgba(200,145,90,0.3)",
-        "rgba(90,200,145,0.3)",
-        "rgba(145,90,200,0.3)"
+        "rgba(200,145,90,0.7)",
+        "rgba(90,200,145,0.7)",
+        "rgba(145,90,200,0.7)"
       ]
     }
   ];
@@ -50,16 +50,16 @@ export class RequestReportingComponent implements OnInit {
   barChartColors: Color[] = [
     {
       backgroundColor: [
-        "rgba(200,255,145,0.3)",
-        "rgba(255,200,145,0.3)",
-        "rgba(145,255,200,0.3)",
-        "rgba(200,145,255,0.3)",
-        "rgba(200,145,90,0.3)",
-        "rgba(90,200,145,0.3)",
-        "rgba(145,90,200,0.3)",
-        "rgba(90,145,200,0.3)",
-        "rgba(200,90,145,0.3)",
-        "rgba(145,200,90,0.3)"
+        "rgba(200,255,145,0.7)",
+        "rgba(255,200,145,0.7)",
+        "rgba(145,255,200,0.7)",
+        "rgba(200,145,255,0.7)",
+        "rgba(200,145,90,0.7)",
+        "rgba(90,200,145,0.7)",
+        "rgba(145,90,200,0.7)",
+        "rgba(90,145,200,0.7)",
+        "rgba(200,90,145,0.7)",
+        "rgba(145,200,90,0.7)"
       ]
     }
   ];

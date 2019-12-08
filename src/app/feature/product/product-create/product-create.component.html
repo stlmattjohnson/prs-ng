@@ -24,13 +24,23 @@
       <tr *ngIf="!isImportPressed">
         <th>Part Number:</th>
         <td>
-          <input [(ngModel)]="product.partNumber" type="text" maxlength="50" required />
+          <input
+            [(ngModel)]="product.partNumber"
+            type="text"
+            maxlength="50"
+            required
+          />
         </td>
       </tr>
       <tr *ngIf="!isImportPressed">
         <th>Name:</th>
         <td>
-          <input [(ngModel)]="product.name" type="text" maxlength="150" required />
+          <input
+            [(ngModel)]="product.name"
+            type="text"
+            maxlength="150"
+            required
+          />
         </td>
       </tr>
       <tr *ngIf="!isImportPressed">
@@ -48,13 +58,23 @@
       <tr *ngIf="!isImportPressed">
         <th>Unit:</th>
         <td>
-          <input [(ngModel)]="product.unit" type="text" maxlength="255" required />
+          <input
+            [(ngModel)]="product.unit"
+            type="text"
+            maxlength="255"
+            required
+          />
         </td>
       </tr>
       <tr *ngIf="!isImportPressed">
         <th>Photo Path:</th>
         <td>
-          <input [(ngModel)]="product.photoPath" type="text" maxlength="255" required />
+          <input
+            [(ngModel)]="product.photoPath"
+            type="text"
+            maxlength="255"
+            required
+          />
         </td>
       </tr>
       <tr></tr>
@@ -73,18 +93,38 @@
       </tr>
       <tr>
         <td colspan="2">
-          <button *ngIf="!isImportPressed" (click)="save()" class="btn btn-sm btn-primary">
+          <button
+            *ngIf="!isImportPressed"
+            (click)="save()"
+            class="btn btn-sm btn-primary"
+          >
             Save
           </button>
-          <button *ngIf="isImportPressed" (click)="fileImportSave()" class="btn btn-sm btn-primary">
+          <button
+            *ngIf="isImportPressed"
+            (click)="fileImportSave()"
+            class="btn btn-sm btn-primary"
+          >
             Save
           </button>
           |
-          <button *ngIf="!isImportPressed" (click)="importPressed()" class="btn btn-sm btn-secondary">
+          <button
+            *ngIf="!isImportPressed"
+            (click)="importPressed()"
+            class="btn btn-sm btn-secondary"
+          >
             File Import
           </button>
-          <button *ngIf="isImportPressed" (click)="importPressed()" class="btn btn-sm btn-secondary">
+          <button
+            *ngIf="isImportPressed"
+            (click)="importPressed()"
+            class="btn btn-sm btn-danger"
+          >
             Cancel
+          </button>
+          |
+          <button (click)="backClicked()" class="btn btn-sm btn-secondary">
+            Back
           </button>
         </td>
       </tr>

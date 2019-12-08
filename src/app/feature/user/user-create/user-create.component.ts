@@ -3,6 +3,7 @@ import { User } from "src/app/model/user.class";
 import { JsonResponse } from "src/app/model/json-response.class";
 import { UserService } from "src/app/service/user.service";
 import { Router } from "@angular/router";
+import { Location } from "@angular/common";
 
 @Component({
   selector: "app-user-create",
@@ -13,7 +14,11 @@ export class UserCreateComponent implements OnInit {
   title: string = "User Create";
   user: User = new User();
   jr: JsonResponse;
-  constructor(private userSvc: UserService, private router: Router) {}
+  constructor(
+    private userSvc: UserService,
+    private router: Router,
+    private loc: Location
+  ) {}
 
   ngOnInit() {}
 
@@ -21,5 +26,9 @@ export class UserCreateComponent implements OnInit {
     this.userSvc.save(this.user).subscribe(jr => {
       this.router.navigateByUrl("/users/list");
     });
+  }
+
+  backClicked() {
+    this.loc.back();
   }
 }
