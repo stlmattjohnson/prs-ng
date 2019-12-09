@@ -45,17 +45,13 @@ export class RequestApproveComponent implements OnInit {
 
   approve(): void {
     this.requestSvc.approve(this.request).subscribe(jr => {
-      this.router.navigateByUrl(
-        "/requests/list-review/" + this.loggedInUser.id
-      );
+      this.router.navigateByUrl("/requests/list-review/" + this.loggedInUser.id);
     });
   }
 
   reject(): void {
     this.requestSvc.reject(this.request).subscribe(jr => {
-      this.router.navigateByUrl(
-        "/requests/list-review/" + this.loggedInUser.id
-      );
+      this.router.navigateByUrl("/requests/list-review/" + this.loggedInUser.id);
     });
   }
 

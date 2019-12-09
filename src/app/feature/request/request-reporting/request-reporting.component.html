@@ -10,6 +10,10 @@
   *ngIf="isLoaded == true && barChartData && pieChartData"
   style=" text-align: center; font-weight: 700; font-size: x-large;"
 >
+  <div style="text-align: center;">
+    Year-to-Date Spend: {{ yearToDate | currency }}
+  </div>
+  <br />
   <div style="display: inline-block; width: 50%;">
     Request Total by User
     <canvas

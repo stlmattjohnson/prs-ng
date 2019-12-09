@@ -108,7 +108,7 @@
       <td *ngIf="lineItemUpdate.id == l.id">
         <select
           [(ngModel)]="lineItemUpdate.product"
-          style="width: 250px; height: 25px"
+          style="width: 250px; height: 23px"
           [compareWith]="compProduct"
         >
           <option *ngFor="let p of products" [ngValue]="p">{{ p.name }}</option>
@@ -116,7 +116,7 @@
       </td>
       <td *ngIf="lineItemUpdate.id != l.id">{{ l.quantity }}</td>
       <td *ngIf="lineItemUpdate.id == l.id">
-        <input [(ngModel)]="lineItemUpdate.quantity" type="number" style="width: 70px; height: 25px;" required/>
+        <input [(ngModel)]="lineItemUpdate.quantity" type="number" style="width: 70px; height: 23px;" required/>
       </td>
       <td>{{ l.product.price | currency }}</td>
       <td>{{ l.product.price * l.quantity | currency }}</td>
@@ -141,12 +141,12 @@
             <a (click)="saveUpdatedLine()">
               <img
                 class="default"
-                src="assets/add-icon-black.png"
+                src="assets/update.png"
                 width="20"
                 height="20"/>
               <img
                 class="hover"
-                src="assets/add-icon-hover.png"
+                src="assets/update-hover.png"
                 width="20"
                 height="20"
             /></a>

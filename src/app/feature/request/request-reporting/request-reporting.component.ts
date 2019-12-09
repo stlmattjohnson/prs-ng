@@ -20,6 +20,7 @@ export class RequestReportingComponent implements OnInit {
   requests: Request[] = [];
   lineitems: LineItem[] = [];
   vendors: Vendor[] = [];
+  yearToDate: number = 0;
   isLoaded: boolean = false;
 
   pieChartLabels = [];
@@ -89,6 +90,7 @@ export class RequestReportingComponent implements OnInit {
               total += l.quantity * l.product.price;
             }
           }
+          this.yearToDate += total;
           this.pieChartData.push(total.toFixed(2));
         });
         this.isLoaded = true;

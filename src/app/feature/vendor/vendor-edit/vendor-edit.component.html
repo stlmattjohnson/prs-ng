@@ -94,21 +94,23 @@
           />
         </td>
       </tr>
-      <tr>
-        <td>
-          <span>
-            <span
-              ><button (click)="update()" class="btn btn-sm btn-primary">
-                Update
-              </button></span
-            >
-            <span>
-              |
-              <button (click)="backClicked()" class="btn btn-sm btn-secondary">
-                Back
-              </button></span
-            >
-          </span>
+      <tr *ngIf="isEmpty">
+        <td colspan="2" style="font-weight: bolder;">
+          <button (click)="vendorEmptyCheck()" class="btn btn-sm btn-danger">
+            Ok
+          </button>
+          Please complete all required fields.
+        </td>
+      </tr>
+      <tr *ngIf="!isEmpty">
+        <td colspan="2">
+          <button (click)="update()" class="btn btn-sm btn-primary">
+            Update
+          </button>
+          |
+          <button (click)="backClicked()" class="btn btn-sm btn-secondary">
+            Back
+          </button>
         </td>
       </tr>
     </table>

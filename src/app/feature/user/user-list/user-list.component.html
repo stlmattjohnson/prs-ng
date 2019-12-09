@@ -37,7 +37,6 @@
     <tr>
       <th><a (click)="sortBy('id')">ID</a></th>
       <th><a (click)="sortBy('userName')">Username</a></th>
-      <th><a (click)="sortBy('password')">Password</a></th>
       <th><a (click)="sortBy('firstName')">First Name</a></th>
       <th><a (click)="sortBy('lastName')">Last Name</a></th>
       <th><a (click)="sortBy('phoneNumber')">Phone</a></th>
@@ -51,7 +50,6 @@
     <tr *ngFor="let u of users | sort: sortCriteria:sortOrder">
       <td>{{ u.id }}</td>
       <td>{{ u.userName }}</td>
-      <td>{{ u.password }}</td>
       <td>{{ u.firstName }}</td>
       <td>{{ u.lastName }}</td>
       <td>{{ u.phoneNumber }}</td>

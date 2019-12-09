@@ -13,8 +13,10 @@ import { Location } from "@angular/common";
 export class VendorEditComponent implements OnInit {
   title: string = "Vendor Edit";
   vendor: Vendor = new Vendor();
+  vendorInfo: string[] = [];
   jr: JsonResponse;
   id: number = 0;
+  isEmpty: boolean = false;
 
   constructor(
     private vendorSvc: VendorService,
@@ -31,9 +33,29 @@ export class VendorEditComponent implements OnInit {
   }
 
   update(): void {
-    this.vendorSvc.update(this.vendor).subscribe(jr => {
-      this.router.navigateByUrl("/vendors/list");
+    this.vendorEmptyCheck();
+    if (!this.isEmpty) {
+      this.vendorSvc.update(this.vendor).subscribe(jr => {
+        this.router.navigateByUrl("/vendors/list");
+      });
+    }
+  }
+
+  vendorEmptyCheck() {
+    this.vendorInfo = [];
+    this.isEmpty = false;
+
+    Object.entries(this.vendor).forEach(entry => {
+      let value = entry[1];
+      this.vendorInfo.push(value);
     });
+    this.vendorInfo.splice(0, 1);
+
+    for (let s of this.vendorInfo) {
+      if (s == "") {
+        this.isEmpty = true;
+      }
+    }
   }
 
   backClicked() {
