@@ -69,7 +69,12 @@
       <tr>
         <th>Email:</th>
         <td>
-          <input [(ngModel)]="user.email" type="text" maxlength="75" required />
+          <input
+            [(ngModel)]="user.email"
+            type="email"
+            maxlength="75"
+            required
+          />
         </td>
       </tr>
       <tr>
@@ -81,14 +86,18 @@
       <tr>
         <th>Admin:</th>
         <td>
-          <input
-            [(ngModel)]="user.admin"
-            type="checkbox"
-            style="border-color: red;"
-          />
+          <input [(ngModel)]="user.admin" type="checkbox" />
         </td>
       </tr>
-      <tr>
+      <tr *ngIf="isEmpty">
+        <td colspan="2" style="font-weight: bolder;">
+          <button (click)="userEmptyCheck()" class="btn btn-sm btn-danger">
+            Ok
+          </button>
+          Please complete all required fields.
+        </td>
+      </tr>
+      <tr *ngIf="!isEmpty">
         <td colspan="2">
           <button (click)="save()" class="btn btn-sm btn-primary">
             Save

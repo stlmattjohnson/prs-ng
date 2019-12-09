@@ -8,7 +8,6 @@ import { Router, ActivatedRoute } from "@angular/router";
 import { Location } from "@angular/common";
 import { Request } from "../../../model/request.class";
 import { RequestService } from "src/app/service/request.service";
-import { SystemService } from 'src/app/service/system.service';
 
 @Component({
   selector: "app-line-item-create",

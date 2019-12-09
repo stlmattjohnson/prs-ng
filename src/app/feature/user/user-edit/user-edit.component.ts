@@ -13,9 +13,12 @@ import { Location } from "@angular/common";
 export class UserEditComponent implements OnInit {
   title: string = "User Edit";
   user: User = new User();
+  userInfo: string[] = [];
   jr: JsonResponse;
   id: number = 0;
-  
+  isUpdatePressed: boolean = false;
+  isEmpty: boolean = false;
+
   constructor(
     private userSvc: UserService,
     private router: Router,
@@ -31,9 +34,31 @@ export class UserEditComponent implements OnInit {
   }
 
   update(): void {
-    this.userSvc.update(this.user).subscribe(jr => {
-      this.router.navigateByUrl("/users/list");
+    this.userEmptyCheck();
+    if (!this.isEmpty) {
+      this.userSvc.update(this.user).subscribe(jr => {
+        this.router.navigateByUrl("/users/list");
+      });
+    }
+  }
+
+  userEmptyCheck() {
+    this.userInfo = [];
+    this.isEmpty = false;
+
+    Object.entries(this.user).forEach(entry => {
+      let value = entry[1];
+      this.userInfo.push(value);
     });
+    this.userInfo.splice(0, 1);
+    this.userInfo.pop();
+    this.userInfo.pop();
+
+    for (let s of this.userInfo) {
+      if (s == "") {
+        this.isEmpty = true;
+      }
+    }
   }
 
   backClicked() {

@@ -6,6 +6,8 @@ import { Router, ActivatedRoute } from "@angular/router";
 import { Location } from "@angular/common";
 import { SystemService } from "src/app/service/system.service";
 import { BaseComponent } from "../../base/base.component";
+import { LineItemService } from "src/app/service/line-item.service";
+import { LineItem } from "src/app/model/line-item.class";
 
 @Component({
   selector: "app-request-detail",
@@ -15,13 +17,16 @@ import { BaseComponent } from "../../base/base.component";
 export class RequestDetailComponent extends BaseComponent implements OnInit {
   title: string = "Request Detail";
   request: Request = new Request();
+  lineitems: LineItem[] = [];
   jr: JsonResponse;
   id: number = 0;
   isDeletePressed: boolean = false;
+  isLoaded: boolean = false;
 
   constructor(
     protected systemSvc: SystemService,
     private requestSvc: RequestService,
+    private lineItemSvc: LineItemService,
     private router: Router,
     private route: ActivatedRoute,
     private loc: Location
@@ -34,6 +39,10 @@ export class RequestDetailComponent extends BaseComponent implements OnInit {
     this.route.params.subscribe(parms => (this.id = parms["id"]));
     this.requestSvc.get(this.id).subscribe(jr => {
       this.request = jr.data as Request;
+      this.lineItemSvc.linesForRequest(this.request.id).subscribe(jr => {
+        this.lineitems = jr.data as LineItem[];
+        this.isLoaded = true;
+      });
     });
   }
 

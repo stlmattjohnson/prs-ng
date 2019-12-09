@@ -64,10 +64,11 @@ export class RequestLinesComponent extends BaseComponent implements OnInit {
       this.products = jr.data as Product[];
       for (let i = 0; i < this.products.length; i++) {
         for (let l of this.lineitems) {
-          if (this.products[i].id == l.product.id) {
-            if (this.lineItemUpdate.product.id != l.product.id) {
-              this.products.splice(i, 1);
-            }
+          if (
+            this.products[i].id == l.product.id &&
+            this.lineItemUpdate.product.id != l.product.id
+          ) {
+            this.products.splice(i, 1);
           }
         }
       }

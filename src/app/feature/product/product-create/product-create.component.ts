@@ -5,7 +5,7 @@ import { Vendor } from "src/app/model/vendor.class";
 import { ProductService } from "src/app/service/product.service";
 import { VendorService } from "src/app/service/vendor.service";
 import { Router } from "@angular/router";
-import { Location } from '@angular/common';
+import { Location } from "@angular/common";
 
 @Component({
   selector: "app-product-create",
@@ -90,8 +90,7 @@ export class ProductCreateComponent implements OnInit {
     this.importFromCsv();
   }
 
-  backClicked(){
+  backClicked() {
     this.loc.back();
   }
 }
-

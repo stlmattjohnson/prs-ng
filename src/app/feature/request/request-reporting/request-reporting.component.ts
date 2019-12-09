@@ -3,7 +3,6 @@ import { User } from "src/app/model/user.class";
 import { Request } from "src/app/model/request.class";
 import { UserService } from "src/app/service/user.service";
 import { RequestService } from "src/app/service/request.service";
-import { ChartDataSets, ChartOptions } from "chart.js";
 import { Color, Label } from "ng2-charts";
 import { LineItem } from "src/app/model/line-item.class";
 import { LineItemService } from "src/app/service/line-item.service";
@@ -73,37 +72,27 @@ export class RequestReportingComponent implements OnInit {
 
   ngOnInit() {
     this.populateBarChart();
+    this.populatePieChart();
+  }
 
+  populatePieChart(): void {
     this.vendorSvc.list().subscribe(jr => {
       this.vendors = jr.data as Vendor[];
+      this.pieChartLabels = [];
       for (let v of this.vendors) {
-        this.pieChartLabels.push(v.name);
+        this.lineItemSvc.list().subscribe(jr => {
+          this.pieChartLabels.push(v.name);
+          this.lineitems = jr.data as LineItem[];
+          let total = 0;
+          for (let l of this.lineitems) {
+            if (l.product.vendor.id == v.id) {
+              total += l.quantity * l.product.price;
+            }
+          }
+          this.pieChartData.push(total.toFixed(2));
+        });
+        this.isLoaded = true;
       }
-    });
-
-    this.lineItemSvc.list().subscribe(jr => {
-      this.lineitems = jr.data as LineItem[];
-      let american = 0;
-      let hdsupply = 0;
-      let mayfair = 0;
-      for (let l of this.lineitems) {
-        switch (l.product.vendor.id) {
-          case 1:
-            american += l.quantity * l.product.price;
-            break;
-          case 2:
-            hdsupply += l.quantity * l.product.price;
-            break;
-          case 3:
-            mayfair += l.quantity * l.product.price;
-            break;
-        }
-      }
-
-      this.pieChartData.push(american.toFixed(2));
-      this.pieChartData.push(hdsupply.toFixed(2));
-      this.pieChartData.push(mayfair.toFixed(2));
-      this.isLoaded = true;
     });
   }
 

@@ -3,7 +3,7 @@ import { Vendor } from "src/app/model/vendor.class";
 import { JsonResponse } from "src/app/model/json-response.class";
 import { VendorService } from "src/app/service/vendor.service";
 import { BaseComponent } from "../../base/base.component";
-import { SystemService } from 'src/app/service/system.service';
+import { SystemService } from "src/app/service/system.service";
 
 @Component({
   selector: "app-vendor-list",
@@ -16,7 +16,10 @@ export class VendorListComponent extends BaseComponent implements OnInit {
   jr: JsonResponse;
   isLoading: boolean = true;
 
-  constructor(private vendorSvc: VendorService, protected systemSvc: SystemService) {
+  constructor(
+    private vendorSvc: VendorService,
+    protected systemSvc: SystemService
+  ) {
     super(systemSvc);
   }
 

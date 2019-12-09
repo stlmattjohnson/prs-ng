@@ -5,7 +5,6 @@ import { Request } from "src/app/model/request.class";
 import { JsonResponse } from "src/app/model/json-response.class";
 import { LineItemService } from "src/app/service/line-item.service";
 import { ProductService } from "src/app/service/product.service";
-import { RequestService } from "src/app/service/request.service";
 import { Router, ActivatedRoute } from "@angular/router";
 import { Location } from "@angular/common";
 
@@ -43,7 +42,9 @@ export class LineItemEditComponent implements OnInit {
 
   update(): void {
     this.lineItemSvc.update(this.lineitem).subscribe(jr => {
-      this.router.navigateByUrl("/requests/request-lines/" + this.lineitem.request.id);
+      this.router.navigateByUrl(
+        "/requests/request-lines/" + this.lineitem.request.id
+      );
     });
   }
 

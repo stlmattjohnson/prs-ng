@@ -14,37 +14,67 @@
       <tr>
         <th style="width: 15%;">First Name:</th>
         <td>
-          <input [(ngModel)]="user.firstName" type="text" maxlength="20" required />
+          <input
+            [(ngModel)]="user.firstName"
+            type="text"
+            maxlength="20"
+            required
+          />
         </td>
       </tr>
       <tr>
         <th>Last Name:</th>
         <td>
-          <input [(ngModel)]="user.lastName" type="text" maxlength="20" required />
+          <input
+            [(ngModel)]="user.lastName"
+            type="text"
+            maxlength="20"
+            required
+          />
         </td>
       </tr>
       <tr>
         <th>Username:</th>
         <td>
-          <input [(ngModel)]="user.userName" type="text" maxlength="20" required />
+          <input
+            [(ngModel)]="user.userName"
+            type="text"
+            maxlength="20"
+            required
+          />
         </td>
       </tr>
       <tr>
         <th>Password:</th>
         <td>
-          <input [(ngModel)]="user.password" type="text" maxlength="10" required />
+          <input
+            [(ngModel)]="user.password"
+            type="text"
+            maxlength="10"
+            required
+          />
         </td>
       </tr>
       <tr>
         <th>Phone:</th>
         <td>
-          <input [(ngModel)]="user.phoneNumber" type="text" maxlength="12" required />
+          <input
+            [(ngModel)]="user.phoneNumber"
+            type="text"
+            maxlength="12"
+            required
+          />
         </td>
       </tr>
       <tr>
         <th>Email:</th>
         <td>
-          <input [(ngModel)]="user.email" type="text" maxlength="75" required />
+          <input
+            [(ngModel)]="user.email"
+            type="email"
+            maxlength="75"
+            required
+          />
         </td>
       </tr>
       <tr>
@@ -59,21 +89,23 @@
           <input [(ngModel)]="user.admin" type="checkbox" />
         </td>
       </tr>
-      <tr>
+      <tr *ngIf="isEmpty">
+        <td colspan="2" style="font-weight: bolder;">
+          <button (click)="userEmptyCheck()" class="btn btn-sm btn-danger">
+            Ok
+          </button>
+          Please complete all required fields.
+        </td>
+      </tr>
+      <tr *ngIf="!isEmpty">
         <td colspan="2">
-          <span>
-            <span
-              ><button (click)="update()" class="btn btn-sm btn-primary">
-                Update
-              </button></span
-            >
-            <span>
-              |
-              <button (click)="backClicked()" class="btn btn-sm btn-secondary">
-                Back
-              </button></span
-            >
-          </span>
+          <button (click)="update()" class="btn btn-sm btn-primary">
+            Update
+          </button>
+          |
+          <button (click)="backClicked()" class="btn btn-sm btn-secondary">
+            Back
+          </button>
         </td>
       </tr>
     </table>

@@ -5,9 +5,9 @@
   </div>
 </div>
 
-<p *ngIf="!request">Loading...</p>
+<p *ngIf="!isLoaded">Loading...</p>
 
-<div *ngIf="request">
+<div *ngIf="isLoaded">
   <div class="seperator"></div>
   <main class="single">
     <table class="table table-sm table-borderless" style="table-layout: fixed;">
@@ -85,22 +85,29 @@
           ></textarea>
         </td>
       </tr>
+      <tr *ngIf="lineitems.length > 0">
+        <td colspan="2">
+          If you would like to delete this request, please delete all associated
+          line items.
+        </td>
+      </tr>
       <tr *ngIf="!isDeletePressed">
         <td colspan="2">
           <div
             *ngIf="
               systemSvc.loggedInUser.admin === true ||
-              systemSvc.loggedInUser.id == request.user.id && request.status != 'Approved'
+              (systemSvc.loggedInUser.id == request.user.id &&
+                request.status != 'Approved')
             "
             style="display: inline-block;"
           >
-            <span
+            <span *ngIf="lineitems.length == 0"
               ><button (click)="deletePressed()" class="btn btn-sm btn-danger">
                 Delete
-              </button></span
-            >
-            <span>
+              </button>
               |
+            </span>
+            <span>
               <button
                 routerLink="/requests/edit/{{ request.id }}"
                 class="btn btn-sm btn-primary"

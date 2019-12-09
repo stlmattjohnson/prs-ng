@@ -4,8 +4,8 @@ import { JsonResponse } from "src/app/model/json-response.class";
 import { VendorService } from "src/app/service/vendor.service";
 import { Router, ActivatedRoute } from "@angular/router";
 import { Location } from "@angular/common";
-import { SystemService } from 'src/app/service/system.service';
-import { BaseComponent } from '../../base/base.component';
+import { SystemService } from "src/app/service/system.service";
+import { BaseComponent } from "../../base/base.component";
 
 @Component({
   selector: "app-vendor-detail",
