@@ -77,13 +77,13 @@
           />
         </td>
       </tr>
-      <tr>
+      <tr *ngIf="loggedInUser.admin">
         <th>Reviewer:</th>
         <td>
           <input [(ngModel)]="user.reviewer" type="checkbox" />
         </td>
       </tr>
-      <tr>
+      <tr *ngIf="loggedInUser.admin">
         <th>Admin:</th>
         <td>
           <input [(ngModel)]="user.admin" type="checkbox" />

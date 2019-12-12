@@ -18,11 +18,11 @@ a:hover img.default {
   padding-top: 10px;
 }
 .lefthalf {
-  background: linear-gradient(to right, #343a40 20%, rgb(169, 29, 49) 50%);
+  background: linear-gradient(to right, #acacac 20%, rgb(169, 29, 49) 50%);
   padding: 2px 5px;
 }
 .seperator {
-  background-color: #343a40;
+  background-color: #acacac;
   height: 6px;
 }
 .main-container {
@@ -31,9 +31,12 @@ a:hover img.default {
   display: block;
   position: relative;
   padding-bottom: 30px;
- }
+}
 footer {
   position: absolute;
   bottom: 0;
   width: 100%;
+}
+.table .thead-dark th {
+  background-color: #acacac !important;
 }

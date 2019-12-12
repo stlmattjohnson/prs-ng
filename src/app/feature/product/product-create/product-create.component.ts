@@ -77,10 +77,8 @@ export class ProductCreateComponent implements OnInit {
   }
 
   importFromCsv(): void {
-    console.log("In importFromCsv");
     for (let i = 0; i < this.csvProducts.length; i++) {
       let prod: Product = this.csvProducts[i];
-      console.log(prod);
       this.productSvc.save(prod).subscribe(jr => {});
     }
     this.router.navigateByUrl("/products/list");

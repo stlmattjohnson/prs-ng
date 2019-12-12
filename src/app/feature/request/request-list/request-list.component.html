@@ -37,7 +37,6 @@
       <th><a (click)="sortBy('status')">Status</a></th>
       <th><a (click)="sortBy('total')">Total</a></th>
       <th><a (click)="sortBy('submittedDate')">Submitted</a></th>
-      <th><a (click)="sortBy('reasonForRejection')">Rejection Reason</a></th>
       <th>Action</th>
     </tr>
   </thead>
@@ -55,7 +54,6 @@
         {{ r.submittedDate | date: "shortDate" }}
         {{ r.submittedDate | date: "mediumTime" }}
       </td>
-      <td>{{ r.reasonForRejection }}</td>
       <td>
         <a routerLink="/requests/detail/{{ r.id }}"
           ><img

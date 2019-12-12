@@ -1,5 +1,5 @@
 nav {
-  background-color: #343a40;
+  background-color: #acacac;
   width: 100%;
 }
 nav ul{
@@ -17,7 +17,7 @@ nav a {
   padding-left: 10px;
 }
 nav a:hover {
-  background: linear-gradient(to bottom, #343a40, rgb(169,29,49) 50%);
+  background: linear-gradient(to bottom, #acacac, rgb(169,29,49) 50%);
   position: relative;
   top: 1px;
 }
