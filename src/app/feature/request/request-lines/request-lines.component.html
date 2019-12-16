@@ -116,13 +116,21 @@
       </td>
       <td *ngIf="lineItemUpdate.id != l.id">{{ l.quantity }}</td>
       <td *ngIf="lineItemUpdate.id == l.id">
-        <input [(ngModel)]="lineItemUpdate.quantity" type="number" style="width: 70px; height: 23px;" required/>
+        <input
+          [(ngModel)]="lineItemUpdate.quantity"
+          type="number"
+          style="width: 70px; height: 23px;"
+          required
+        />
       </td>
       <td>{{ l.product.price | currency }}</td>
       <td>{{ l.product.price * l.quantity | currency }}</td>
       <td>
         <div *ngIf="request.status == 'New'">
-          <div *ngIf="lineItemUpdate.id == 0 || l.id != lineItemUpdate.id" style="display: inline-block;">
+          <div
+            *ngIf="lineItemUpdate.id == 0 || l.id != lineItemUpdate.id"
+            style="display: inline-block;"
+          >
             <a (click)="updateLineItem(l.id)">
               <img
                 class="default"
@@ -137,7 +145,10 @@
             /></a>
             |
           </div>
-          <div *ngIf="lineItemUpdate.id != 0 && l.id == lineItemUpdate.id" style="display: inline-block;">
+          <div
+            *ngIf="lineItemUpdate.id != 0 && l.id == lineItemUpdate.id"
+            style="display: inline-block;"
+          >
             <a (click)="saveUpdatedLine()">
               <img
                 class="default"
@@ -178,12 +189,15 @@
       Submit for Review</button
     >&nbsp;|&nbsp;
   </div>
+  <div *ngIf="request.status == 'Rejected'" style="color: red;">
+    Reason for Rejection: {{ request.reasonForRejection }} <br /><br />
+  </div>
   <div
     *ngIf="lineitems.length != 0 && request.status == 'Rejected'"
     style="display: inline-block;"
   >
     <button (click)="updateRequest()" class="btn btn-sm btn-danger">
-      Update Request</button
+      Re-Open Request</button
     >&nbsp;|&nbsp;
   </div>
   <div style="display: inline-block;">

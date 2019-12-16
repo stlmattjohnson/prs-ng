@@ -10,7 +10,10 @@
   *ngIf="isLoaded == true && barChartData && pieChartData"
   style=" text-align: center; font-weight: 700; font-size: x-large;"
 >
-  <div style="text-align: center;">
+  <div *ngIf="yearToDate < 60000" style="text-align: center;">
+    Year-to-Date Spend: {{ yearToDate | currency }}
+  </div>
+  <div *ngIf="yearToDate >= 60000" style="text-align: center; color: red;">
     Year-to-Date Spend: {{ yearToDate | currency }}
   </div>
   <br />
